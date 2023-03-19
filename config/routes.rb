@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :products
   resources :farms
   resources :farmers
-  # resources :purchases
+  resources :purchases, only: [:index, :create]
 
 
   #filtered products

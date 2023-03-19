@@ -3,13 +3,13 @@ class FarmsController < ApplicationController
     before_action :find_farm, only: [:show, :update, :destroy]
 
 
-    def index 
+    def index # show all
         farms = Farm.all
         render json: farms, status: :ok
     end
 
-    def show
-        render json: @farm, status: :ok
+    def show # show one
+        render json: @farm, serializer: FarmWithProductSerializer, status: :ok
     end
 
     def create
