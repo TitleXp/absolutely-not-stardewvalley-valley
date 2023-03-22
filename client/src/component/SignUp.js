@@ -1,12 +1,14 @@
 import { useState, useContext } from "react"
-import { UserContext } from "../context/userContext"
 import { useHistory } from "react-router-dom"
+import { UserContext } from "../context/userContext"
+import { ErrorContext } from "../context/errorContext"
 
 const SignUp = ({ handleLogInSignUp }) => {
   
   const history = useHistory()
 
   const {setCurrentUser} = useContext(UserContext)
+  const {setError} = useContext(ErrorContext)
 
   const [newUser, setNewUser] =useState({
     username: "",
@@ -37,9 +39,15 @@ const SignUp = ({ handleLogInSignUp }) => {
           // history.push here
         })
       } else {
-        res.json().then((error) => {
-          alert(error)
-        // set error message right here from errorContext
+        // res.json().then((error) => {
+        //   alert(error)
+        // })
+        res.json().then(errorObj => {
+          if (typeof(errorObj.error) === 'string') {
+            setError({text: errorObj.error, type: ""})
+          } else {
+            setError(errorObj.error)
+          }
         })
       }
     })
@@ -72,7 +80,7 @@ const SignUp = ({ handleLogInSignUp }) => {
       </div>
 
       <div>
-        <input type="link" name="profile_pic_link" placeholder="Profile Picture Link" onChange={handleSignUpChange} value={newUser.profile_pic_link}  />
+        <input type="text" name="profile_pic_link" placeholder="Profile Picture Link" onChange={handleSignUpChange} value={newUser.profile_pic_link}  />
       </div>
 
       <input type="submit" value="Create New User" />

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users, except: [:create]
-  # resources :carts
+  resources :carts
   resources :products
   resources :farms
   resources :farmers

@@ -86,6 +86,7 @@ function App() {
     return(
       <div>
         <NavBar />
+        <Notification />
         <Switch>
 
           <Route exact path="/loginsignup" >
@@ -129,6 +130,7 @@ function App() {
   return ( // what additional things can users do?
     <div>
         <NavBar />
+        <Notification />
         <Switch>
 
           <Route exact path="/profile" >

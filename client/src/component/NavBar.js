@@ -41,6 +41,8 @@ const NavBar = () => {
     <NavLink activeStyle= {{ color: "blue" }} to="/products">Products</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/fruits">Fruits</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/vegetables">Vegetables</NavLink>
+    <NavLink activeStyle= {{ color: "blue" }} to="/cart">Cart</NavLink>
+
     <button onClick={handleLogOut}> Sign Out </button>
   </nav>
   )

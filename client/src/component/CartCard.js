@@ -1,8 +1,12 @@
 import React from 'react'
 
-const CartCard = () => {
+const CartCard = (quantity, product_id) => {
   return (
-    <div>CartCard</div>
+    <div>CartCard
+      {quantity}
+      {product_id}
+
+    </div>
   )
 }
 

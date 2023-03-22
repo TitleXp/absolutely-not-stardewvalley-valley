@@ -1,6 +1,7 @@
 import { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { UserContext } from "../context/userContext"
+import { ErrorContext } from "../context/errorContext"
 
 
 
@@ -9,6 +10,7 @@ const LogIn = ({ handleLogInSignUp }) => {
   const history = useHistory()
 
   const {setCurrentUser} = useContext(UserContext)
+  const {error, setError} = useContext(ErrorContext)
 
   const [user, setUser] = useState({
     username: "",
@@ -35,8 +37,15 @@ const LogIn = ({ handleLogInSignUp }) => {
           // do something else too? think about history.push here
         })
       } else {
-        res.json().then(errorObj => alert(errorObj.error))
+        // res.json().then(errorObj => alert(errorObj.error))
         // useError context here instead of alert
+        res.json().then(errorObj => {
+          if (typeof(errorObj.error) === 'string') {
+            setError({text: errorObj.error, type: ""})
+          } else {
+            setError(errorObj.error)
+          }
+        })
       }
     })
     .catch(error => alert(error))

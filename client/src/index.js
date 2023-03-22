@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from './context/userContext'
 import { ErrorProvider } from './context/errorContext'
+import { CartProvider } from './context/cartContext';
 
 import 'semantic-ui-css/semantic.min.css'
 
@@ -14,11 +15,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ErrorProvider>
     <UserProvider>
-      <React.StrictMode>
-        <Router>
-          <App />
-        </Router>
-      </React.StrictMode>
+      <CartProvider>
+        <React.StrictMode>
+          <Router>
+            <App />
+          </Router>
+        </React.StrictMode>
+      </CartProvider>
     </UserProvider>
   </ErrorProvider>
 
