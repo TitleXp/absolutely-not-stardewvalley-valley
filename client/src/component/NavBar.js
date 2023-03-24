@@ -44,7 +44,11 @@ const NavBar = () => {
       <NavLink activeStyle= {{ color: "blue" }} to="/vegetables">Vegetables</NavLink>
       <NavLink activeStyle= {{ color: "blue" }} to="/profile">User</NavLink>
       <NavLink activeStyle= {{ color: "blue" }} to="/cart">Cart</NavLink>
-  
+
+      <br />
+      Welcome. {currentUser.username}
+
+      <br />
       <button onClick={handleLogOut}> Sign Out </button>
     </nav>
     )
@@ -58,7 +62,13 @@ const NavBar = () => {
     <NavLink activeStyle= {{ color: "blue" }} to="/vegetables">Vegetables</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/profile">User</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/cart">Cart</NavLink>
+    <NavLink activeStyle= {{ color: "blue" }} to="/checkout">Checkout</NavLink>
 
+
+    <br />
+    Welcome, {currentUser.username}
+
+    <br />
     <button onClick={handleLogOut}> Sign Out </button>
   </nav>
   )

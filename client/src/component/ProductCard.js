@@ -37,8 +37,8 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
       body: JSON.stringify(productData)
     })
     .then(res => res.json())
-    .then(productObj => setCart(currentVal => console.log(currentVal)))
-    // .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
+    // .then(productObj => setCart(currentVal => console.log(currentVal)))
+    .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
     .catch(error => alert(error))
   }
 

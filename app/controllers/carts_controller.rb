@@ -4,8 +4,8 @@ class CartsController < ApplicationController
     def index
         # cart_items = Cart.all.where(user_id: session[:user_id])
         # cart_items = Cart.all.where(purchase: false)
-        cart_items = Cart.all
-        # cart_items = Cart.all.where(purchase_id: [:purchase_id])
+        # cart_items = Cart.all
+        cart_items = Cart.all.where(purchase_id: [:purchase_id])
 
         render json: cart_items, status: :ok
     end

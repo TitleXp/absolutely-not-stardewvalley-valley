@@ -10,12 +10,15 @@ const CartContainer = () => {
 
   console.log("this is cart", cart)
 
-  const mappedCart = cart.map(cart => (
+  const mappedCart = cart?.map(cart => (
     <CartCard {...cart} key={cart.id} setCart={setCart} />
   ))
 
 
-  // stripe checkout component
+  const totalPrice = cart?.reduce((acc, { quantity, product }) => {
+    return acc + quantity * product.price;
+  }, 0);
+
   let total = 0
 
   const onToken = (token) => {
@@ -35,7 +38,7 @@ const CartContainer = () => {
             console.log(response)
             if (response.status === "succeeded") {
             console.log("Token retrieved successfully.");
-            } else {
+          } else {
             console.log("Token retrieval failed.");
             }
         })
@@ -44,9 +47,6 @@ const CartContainer = () => {
         });
     };
 
-    const totalPrice = cart.reduce((acc, { quantity, product }) => {
-      return acc + quantity * product.price;
-    }, 0);
 
   return (
     <div>CartContainer

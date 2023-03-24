@@ -2,6 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js'
+
 import NavBar from './component/NavBar';
 import Notification from './component/Notification';
 import SignUp from './component/SignUp';
@@ -22,6 +25,8 @@ function App() {
 
   const {currentUser, setCurrentUser} = useContext(UserContext) 
   const {error, setError} = useContext(ErrorContext)
+
+  const stripePromise= loadStripe('pk_test_51MmPMkKVBulZTKggDXMGrLIIqMtVV8tgTYrYPqWJkp3QwumtXfCWytFXcd5IcU3um1pMPfsYP1C44ksZyFmSscYv00pb3CXkx4')
 
   const [showLogin, setshowLogin] = useState(true);
 
@@ -163,8 +168,17 @@ function App() {
           </Route>
 
           <Route exact path="/checkout"> 
-            <ShippingForm />
+            <Elements stripe={stripePromise}>
+              <ShippingForm />
+            </Elements>
           </Route>
+
+          {/* <Route exact path="/checkout"> 
+            <ShippingForm />
+          </Route> */}
+
+
+          
 
           {/* <Route exact path="/"> //save as template
             < />

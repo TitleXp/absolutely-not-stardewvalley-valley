@@ -140,10 +140,7 @@ end
 
 puts "Creating purchases... "
 
-p0 = Purchase.create!(
-  user_id: john_doe.id,
-  is_purchased: false
-)
+
 
 p1 = Purchase.create!(
   user_id: john_doe.id,

@@ -15,7 +15,8 @@ class PurchasesController < ApplicationController
     def empty_cart
         p0 = Purchase.create!(
         user_id: [:user_id],
-        is_purchased: false
+        is_purchased: false)
+        render json: empty_cart, status: :created
     end
 
     private
