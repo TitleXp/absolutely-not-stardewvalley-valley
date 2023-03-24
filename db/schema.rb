@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_221300) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "quantity"
-    t.boolean "is_purchased", default: false, null: false
     t.bigint "product_id", null: false
     t.bigint "purchase_id", null: false
     t.datetime "created_at", null: false
@@ -58,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_221300) do
   end
 
   create_table "purchases", force: :cascade do |t|
+    t.boolean "is_purchased", default: false, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

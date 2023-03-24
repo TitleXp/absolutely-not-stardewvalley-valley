@@ -6,7 +6,7 @@ const FarmCard = ({ id, name, location, farm_pic_link}) => {
     <div>
       <Link to={`/farms/${id}`}>{name}</Link>
       <div>
-        <img src={farm_pic_link}></img>
+        <img src={farm_pic_link} width="400" height="400"></img>
         <p>Location: {location}</p>
       </div>
     </div>

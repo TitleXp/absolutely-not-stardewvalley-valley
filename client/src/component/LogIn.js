@@ -34,6 +34,7 @@ const LogIn = ({ handleLogInSignUp }) => {
       if(res.ok) {
         res.json().then(userObj => {
           setCurrentUser(userObj)
+          history.push('/farms')
           // do something else too? think about history.push here
         })
       } else {

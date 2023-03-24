@@ -41,6 +41,67 @@ wild_horseradish = Product.create!(
   farm_id: Farm.all.sample.id
 )
 
+strawberry = Product.create!(
+  name: "Strawberry",
+  category: "fruit",
+  description: "A sweet, juicy favorite with an appealing red color",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/6/6d/Strawberry.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+potato = Product.create!(
+  name: "Potato",
+  category: "vegetable",
+  description: "A widely cultivated tuber",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/c/c2/Potato.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+parsnip = Product.create!(
+  name: "Parsnip",
+  category: "vegetable",
+  description: "A spring tuber closely related to the carrot. It has an earthy taste and is full of nutrients",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/d/db/Parsnip.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+blueberry = Product.create!(
+  name: "Blueberry",
+  category: "fruit",
+  description: "A popular berry reported to have many health benefits. The blue skin has the highest nutrient concentration",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/9/9e/Blueberry.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+melon = Product.create!(
+  name: "Melon",
+  category: "fruit",
+  description: "A cool, sweet summer treat",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/1/19/Melon.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+starfruit = Product.create!(
+  name: "Starfruit",
+  category: "fruit",
+  description: "An extremely juicy fruit that grows in hot, humid weather. Slightly sweet with a sour undertone",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/d/db/Starfruit.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+
 puts "Creating John Doe... "
 
 john_doe = User.create!(
@@ -79,15 +140,20 @@ end
 
 puts "Creating purchases... "
 
+p0 = Purchase.create!(
+  user_id: john_doe.id,
+  is_purchased: false
+)
+
 p1 = Purchase.create!(
-  user_id: john_doe.id
+  user_id: john_doe.id,
+  is_purchased: true
 )
 
 puts "Creating carts for purchases... "
 
 c1 = Cart.create!(
   quantity: 2,
-  is_purchased: true,
   product_id: wild_horseradish.id,
   purchase_id: p1.id
 )

@@ -31,57 +31,7 @@ function App() {
   }
 
 
-  // if(currentUser.admin===true) { // if the user is admin
-  //   return(
-  //     <div>
-  //       <NavBar />
-  //       <Switch>
-
-  //         <Route exact path="/profile" >
-  //           <User />
-  //         </Route>
-
-  //         {/* <Route exact path="/loginsignup" >
-  //           <>
-  //             <LogIn />
-  //             <SignUp />
-  //           </>
-  //         </Route> */}
-
-  //         <Route exact path="/farms">
-  //           <FarmContainer />
-  //         </Route>
-
-  //         <Route exact path="/products">
-  //           <AllProductsContainer />
-  //         </Route>
-
-  //         <Route exact path="/fruits">
-  //           <FruitsContainer />
-  //         </Route>
-
-  //         <Route exact path="/vegetables">
-  //           <VegetablesContainer />
-  //         </Route>
-
-  //         <Route exact path="/cart">
-  //           <CartContainer />
-  //         </Route>
-
-  //         <Route exact path="/checkout"> 
-  //           <ShippingForm />
-  //         </Route>
-
-  //         {/* <Route exact path="/"> //save as template
-  //           < />
-  //         </Route> */}
-
-  //       </Switch>
-  //     </div>
-
-  //   )
-  // }
-
+  
   if(!currentUser) { // what does the public sees/do?
     return(
       <div>
@@ -126,9 +76,60 @@ function App() {
       </div>
     )
   }
+  
+  if(currentUser.admin === true) { // if the user is admin
+    return(
+      <div>
+        <NavBar />
+        <Switch>
+
+          <Route exact path="/profile" >
+            <User />
+          </Route>
+
+          {/* <Route exact path="/loginsignup" >
+            <>
+              <LogIn />
+              <SignUp />
+            </>
+          </Route> */}
+
+          <Route exact path="/farms">
+            <FarmContainer />
+          </Route>
+
+          <Route exact path="/products">
+            <AllProductsContainer />
+          </Route>
+
+          <Route exact path="/fruits">
+            <FruitsContainer />
+          </Route>
+
+          <Route exact path="/vegetables">
+            <VegetablesContainer />
+          </Route>
+
+          <Route exact path="/cart">
+            <CartContainer />
+          </Route>
+
+          <Route exact path="/checkout"> 
+            <ShippingForm />
+          </Route>
+
+          {/* <Route exact path="/"> //save as template
+            < />
+          </Route> */}
+
+        </Switch>
+      </div>
+
+    )
+  }
 
   return ( // what additional things can users do?
-    <div>
+  <div>
         <NavBar />
         <Notification />
         <Switch>

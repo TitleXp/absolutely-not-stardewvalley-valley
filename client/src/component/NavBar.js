@@ -35,12 +35,28 @@ const NavBar = () => {
     )
   }
 
+  if(currentUser.admin === true) {
+    return(
+      <nav>
+      <NavLink activeStyle= {{ color: "blue" }} to="/farms">Farms</NavLink>
+      <NavLink activeStyle= {{ color: "blue" }} to="/products">Products</NavLink>
+      <NavLink activeStyle= {{ color: "blue" }} to="/fruits">Fruits</NavLink>
+      <NavLink activeStyle= {{ color: "blue" }} to="/vegetables">Vegetables</NavLink>
+      <NavLink activeStyle= {{ color: "blue" }} to="/profile">User</NavLink>
+      <NavLink activeStyle= {{ color: "blue" }} to="/cart">Cart</NavLink>
+  
+      <button onClick={handleLogOut}> Sign Out </button>
+    </nav>
+    )
+  }
+
   return (
     <nav>
     <NavLink activeStyle= {{ color: "blue" }} to="/farms">Farms</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/products">Products</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/fruits">Fruits</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/vegetables">Vegetables</NavLink>
+    <NavLink activeStyle= {{ color: "blue" }} to="/profile">User</NavLink>
     <NavLink activeStyle= {{ color: "blue" }} to="/cart">Cart</NavLink>
 
     <button onClick={handleLogOut}> Sign Out </button>

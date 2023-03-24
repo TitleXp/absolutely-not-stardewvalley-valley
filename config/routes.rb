@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :products
   resources :farms
   resources :farmers
-  resources :purchases, only: [:index, :create]
+  resources :purchases#, only: [:index, :create]
 
 
   #filtered products
@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   
   #return data for logged in user
   get '/user', to: 'users#find_logged_in_user'
+
+  post '/charges', to: 'charges#create'
 end
