@@ -3,5 +3,5 @@ class Purchase < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :products, through: :carts
 
-  validates :user, presence: true
+  validates :user_id, presence: true
 end
