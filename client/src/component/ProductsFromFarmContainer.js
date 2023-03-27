@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ProductCard from './ProductCard'
+import FarmerCard from './FarmerCard'
+
 
 
 const ProductsFromFarmContainer = () => {
@@ -33,6 +35,9 @@ const ProductsFromFarmContainer = () => {
 
   return (
     <div>ProductsFromFarmContainer
+      <div>
+        <FarmerCard />
+      </div>
       <div>
         {mappedProductsFromFarm}
       </div>

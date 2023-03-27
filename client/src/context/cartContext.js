@@ -16,11 +16,11 @@ const CartProvider = ({children}) => {
           }
         } 
         fetchCart()
-      }, [setCart]);
+      }, []);
     
 
     return(
-        <CartContext.Provider value={{cart, setCart}}>
+        <CartContext.Provider value={{cart: cart, setCart}}>
             {children}
         </CartContext.Provider>
     )

@@ -142,17 +142,28 @@ puts "Creating purchases... "
 
 
 
-p1 = Purchase.create!(
-  user_id: john_doe.id,
-  is_purchased: true
+# p1 = Purchase.create!(
+#   user_id: john_doe.id,
+#   is_purchased: true
+# )
+
+# p2 = Purchase.create!(
+#   user_id: john_doe.id,
+#   is_purchased: true
+# )
+
+Purchase.create!(
+  user_id: User.all.sample.id,
+  created_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
+  is_purchased: false
 )
 
 puts "Creating carts for purchases... "
 
 c1 = Cart.create!(
-  quantity: 2,
+  quantity: 123,
   product_id: wild_horseradish.id,
-  purchase_id: p1.id
+  purchase_id: Purchase.all.sample.id
 )
 
 puts "seeding done"

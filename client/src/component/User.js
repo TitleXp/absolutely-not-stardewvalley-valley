@@ -1,14 +1,32 @@
 import { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../context/userContext'
+import CompletedCard from './CompletedCard'
 
 const User = () => {
 
   const history = useHistory()
   const {currentUser, setCurrentUser} = useContext(UserContext)
-  console.log('currentUser', currentUser)
+  // console.log('currentUser', currentUser)
+  const [completedPurchase, setCompletedPurchase] = useState([])
+
+  useEffect(() => { 
+    fetch('/completed')
+    .then(res => res.json())
+    .then(data => setCompletedPurchase(data))
+  }, [])
+
+  console.log('completed purchase', completedPurchase)
+
+  const mappedCompleted = completedPurchase?.map(completed => (
+    <CompletedCard {...completed} key={completed.id} />
+    
+  ))
+
+  console.log('mapped completed', mappedCompleted)
 
   const { id, username, email, bio, age, purchases, profile_pic_link} = currentUser
+
 
   const [showEditUsername, setShowEditUsername] = useState(true)
   const [editUsername, setEditUsername] = useState({
@@ -144,7 +162,7 @@ const User = () => {
       <div>
       Purchase history
 
-      {purchases.is_purchased}
+      {mappedCompleted}
       </div>
 
     </div>

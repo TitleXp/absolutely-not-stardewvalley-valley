@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js'
+// import { Elements } from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js'
 
 import NavBar from './component/NavBar';
 import Notification from './component/Notification';
@@ -16,7 +16,7 @@ import ProductsFromFarmContainer from './component/ProductsFromFarmContainer'
 import FruitsContainer from './component/FruitsContainer'
 import VegetablesContainer from './component/VegetablesContainer'
 import CartContainer from './component/CartContainer'
-import ShippingForm from './component/ShippingForm'
+// import ShippingForm from './component/ShippingForm'
 
 import { UserContext } from './context/userContext';
 import { ErrorContext } from './context/errorContext';
@@ -26,7 +26,7 @@ function App() {
   const {currentUser, setCurrentUser} = useContext(UserContext) 
   const {error, setError} = useContext(ErrorContext)
 
-  const stripePromise= loadStripe('pk_test_51MmPMkKVBulZTKggDXMGrLIIqMtVV8tgTYrYPqWJkp3QwumtXfCWytFXcd5IcU3um1pMPfsYP1C44ksZyFmSscYv00pb3CXkx4')
+  // const stripePromise= loadStripe('pk_test_51MmPMkKVBulZTKggDXMGrLIIqMtVV8tgTYrYPqWJkp3QwumtXfCWytFXcd5IcU3um1pMPfsYP1C44ksZyFmSscYv00pb3CXkx4')
 
   const [showLogin, setshowLogin] = useState(true);
 
@@ -119,9 +119,9 @@ function App() {
             <CartContainer />
           </Route>
 
-          <Route exact path="/checkout"> 
+          {/* <Route exact path="/checkout"> 
             <ShippingForm />
-          </Route>
+          </Route> */}
 
           {/* <Route exact path="/"> //save as template
             < />
@@ -167,11 +167,11 @@ function App() {
             <CartContainer />
           </Route>
 
-          <Route exact path="/checkout"> 
+          {/* <Route exact path="/checkout"> 
             <Elements stripe={stripePromise}>
               <ShippingForm />
             </Elements>
-          </Route>
+          </Route> */}
 
           {/* <Route exact path="/checkout"> 
             <ShippingForm />

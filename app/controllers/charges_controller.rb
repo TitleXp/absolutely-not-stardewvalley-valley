@@ -1,6 +1,34 @@
 require 'stripe'
-require 'dotenv'
-Dotevn.load
+# require 'dotenv'
+# Dotevn.load
+
+Stripe.api_key = Rails.application.credentials.stripe[:stripe_secret_key]
+
+class ChargesController < ApplicationController
+
+  def order_total(cart)
+    # byebug
+    prices = cart.length > 0 ? cart.map{ 
+      |c| Product.find(c[:product_id]).price * c[:quantity]
+    } *100 : cart
+    # prices = cart&.map{|c| c.product.price}
+    prices.sum
+
+  end
+
+  def create
+
+    payment_intent = Stripe::PaymentIntent.create(
+      amount: order_total(params[:purchase]),
+      currency: 'usd'
+      # payment_method: 'card'
+    )
+    render json: {
+      clientSecret: payment_intent['client_secret'],
+      amount: payment_intent['amount']
+    }, status: :created
+  end
+end
 
 # class ChargesController < ApplicationController
 #     # skip_before_action :authorize
@@ -53,25 +81,26 @@ Dotevn.load
 #     end
 # end
 
-class ChargesController < ApplicationController
-    def create
-      payment_method_id = params[:payment_method_id]
+# class ChargesController < ApplicationController
+#     def create
+#       payment_method_id = params[:payment_method_id]
   
-      payment_intent = Stripe::PaymentIntent.create({
-        amount: <price_in_cents>,
-        currency: 'usd',
-        payment_method: payment_method_id,
-        confirmation_method: 'manual',
-        confirm: true
-      })
+#       payment_intent = Stripe::PaymentIntent.create({
+#         amount: <price_in_cents>,
+#         currency: 'usd',
+#         payment_method: payment_method_id,
+#         confirmation_method: 'manual',
+#         confirm: true
+#       })
   
-      if payment_intent.status == 'succeeded'
-        purchase = Purchase.find(params[:purchase_id])
-        purchase.update(is_purchased: true)
+#       if payment_intent.status == 'succeeded'
+#         purchase = Purchase.find(params[:purchase_id])
+#         purchase.update(is_purchased: true)
   
-        render json: { message: 'Payment succeeded!' }, status: :ok
-      else
-        render json: { error: 'Payment failed.' }, status: :unprocessable_entity
-      end
-    end
-  end
+#         render json: { message: 'Payment succeeded!' }, status: :ok
+#       else
+#         render json: { error: 'Payment failed.' }, status: :unprocessable_entity
+#       end
+#     end
+#   end
+  

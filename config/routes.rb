@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   get '/user', to: 'users#find_logged_in_user'
 
   post '/charges', to: 'charges#create'
+
+  get '/completed', to: 'carts#completed_purchase'
 end

@@ -50,3 +50,4 @@ gem "active_model_serializers", "~> 0.10.13"
 gem "stripe"
 gem "faker"
 gem 'dotenv-rails' #, :groups => [:development, :test]
+gem 'byebug'
