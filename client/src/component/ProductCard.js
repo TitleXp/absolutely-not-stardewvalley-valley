@@ -17,29 +17,53 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
 
 
   // testing with default value of 1, change it later
-  const purchaseID = 1
+  // const purchaseID = 1
 
-  console.log(id)
+  // console.log(id)
 
-  const productData = {
-    product_id: id,
-    quantity: quantity,
-    purchase_id: purchaseID
+  // const productData = {
+  //   product_id: id,
+  //   quantity: quantity,
+  //   purchase_id: purchaseID
 
-  }
+  // }
+
+  // const handleAddToCart = () => {
+    
+  //   fetch("/carts", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(productData)
+  //   })
+  //   .then(res => res.json())
+  //   // .then(productObj => setCart(currentVal => console.log(currentVal)))
+  //   .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
+  //   .catch(error => alert(error))
+  // }
 
   const handleAddToCart = () => {
-    fetch("/carts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(productData)
-    })
-    .then(res => res.json())
-    // .then(productObj => setCart(currentVal => console.log(currentVal)))
-    .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
-    .catch(error => alert(error))
+    fetch("/purchases")
+      .then(res => res.json())
+      .then(data => {
+        const purchaseID = data.id
+        const productData = {
+          product_id: id,
+          quantity: quantity,
+          purchase_id: purchaseID
+        }
+        return fetch("/carts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(productData)
+        })
+      })
+      .then(res => res.json())
+      .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
+      .catch(error => alert(error))
   }
 
   console.log("this is cart", cart)

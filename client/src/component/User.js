@@ -11,7 +11,7 @@ const User = () => {
   const [completedPurchase, setCompletedPurchase] = useState([])
 
   useEffect(() => { 
-    fetch('/completed')
+    fetch('/purchases')
     .then(res => res.json())
     .then(data => setCompletedPurchase(data))
   }, [])

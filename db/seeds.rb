@@ -155,7 +155,7 @@ puts "Creating purchases... "
 Purchase.create!(
   user_id: User.all.sample.id,
   created_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
-  is_purchased: false
+  is_purchased: true
 )
 
 puts "Creating carts for purchases... "

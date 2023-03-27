@@ -23,6 +23,8 @@ const AllProductsContainer = () => {
     <ProductCard {...product} key={product.id} />
   ))
 
+  console.log()
+
   return (
     <div>AllProductsContainer
       {mappedAllProducts}
