@@ -5,6 +5,8 @@ import CartCard from './CartCard'
 import { CartContext } from '../context/cartContext'
 import CheckoutForm from './CheckoutForm'
 
+import { Button, Header, Icon, Divider } from 'semantic-ui-react';
+
 // import StripeCheckout from 'react-stripe-checkout'
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
@@ -30,34 +32,6 @@ const CartContainer = () => {
   const totalPrice = cart?.reduce((acc, { quantity, product }) => {
     return acc + quantity * product.price;
   }, 0);
-
-  // let total = 0
-
-  // const onToken = (token) => {
-  //   const charge = {
-  //       token: token.id,
-  //       };
-  //       const config = {
-  //       method: "POST",
-  //       headers: {
-  //           "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ charge: charge, price: total * 100 }),
-  //       };
-  //       fetch("/charges", config)
-  //       .then((res) => res.json())
-  //       .then((response) => {
-  //           console.log(response)
-  //           if (response.status === "succeeded") {
-  //           console.log("Token retrieved successfully.");
-  //         } else {
-  //           console.log("Token retrieval failed.");
-  //           }
-  //       })
-  //       .catch((error) => {
-  //           console.error("Error while retrieving token:", error);
-  //       });
-  //   };
 
   
   const handlePurchase = () => {
@@ -89,29 +63,28 @@ const CartContainer = () => {
 
   
   return (
-    <div>CartContainer
+    <div>
+      <Header as="h1">
+        <Icon name="cart" />
+        Shopping Cart
+      </Header>
       {mappedCart}
 
-      <div>
+      <Divider />
+      
+      <Header as="h3">
         Grand Total: ${totalPrice.toFixed(2)}
-      </div>
-
-      <button onClick={handlePurchase}>BUY</button>
-
-      {clientSecret && <Elements stripe={stripePromise} options={options}>
-        <CheckoutForm />
-      </Elements>
-      }
+      </Header>
       
+      <Button color="green" onClick={handlePurchase}>
+        Checkout
+      </Button>
 
-
-      
-
-      {/* <StripeCheckout
-        token={onToken}
-        stripeKey={process.env.STRIPE_PUBLISHABLE_KEY}
-      /> */}
-
+      {clientSecret && (
+        <Elements stripe={stripePromise} options={options}>
+          <CheckoutForm />
+        </Elements>
+      )}
     </div>
   )
 }

@@ -2,8 +2,7 @@ import { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { UserContext } from "../context/userContext"
 import { ErrorContext } from "../context/errorContext"
-
-
+import { Form, Button, Message } from 'semantic-ui-react'
 
 const LogIn = ({ handleLogInSignUp }) => {
 
@@ -54,21 +53,28 @@ const LogIn = ({ handleLogInSignUp }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}> Log in
-      <br />
-
-      <button onClick={handleLogInSignUp}> Sign Up! </button>
-      <div>
-        <input type="text" onChange={handleLogInChange} value={user.username} name="username" placeholder="UserName" required />
-      </div>
-        
-      <div>
-        <input type="password" onChange={handleLogInChange} value={user.password} name="password" placeholder="Password" required />
-      </div>
-
-      <input type="submit" value="Login" />
-
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <h2>Log in</h2>
+        <Button onClick={handleLogInSignUp}> Sign Up! </Button>
+        <Form.Input 
+          type="text" 
+          onChange={handleLogInChange} 
+          value={user.username} 
+          name="username" 
+          placeholder="UserName" 
+          required 
+        />
+        <Form.Input 
+          type="password" 
+          onChange={handleLogInChange} 
+          value={user.password} 
+          name="password" 
+          placeholder="Password" 
+          required 
+        />
+        <Button type="submit">Login</Button>
+      </Form>
+      {error && <Message negative>{error.text}</Message>}
     </div>
   )
 }

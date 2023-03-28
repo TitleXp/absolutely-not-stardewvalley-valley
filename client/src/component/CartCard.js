@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Button, Form } from 'semantic-ui-react';
 
 const CartCard = ({id, quantity, product, setCart}) => {
 
@@ -50,27 +51,47 @@ const CartCard = ({id, quantity, product, setCart}) => {
   }
 
   return (
-    <div>CartCard
-
-      product name:{product.name}
-      <button onClick={handleDeleteProductInCart}>x</button>
-      <br />
-      price: {product.price}
-      <br />
-      quantity: {quantity}
-      {showEditQtyForm ? 
-      <button onClick={handleClickEdit}>edit</button> : 
-      <>
-        <button onClick={handleClickEdit}>cancel edit</button>
-        <form onSubmit={handleEditQuantityInCart}>
-          <input type="number" name="quantity" value={editQuantity.quantity} onChange={handleChangeEdit} />
-          <input type="submit" value="update"/>
-        </form>
-      </>
-      
-      }
-      
-    
+    <div className="ui card">
+      <div className="content">
+        <div className="header">{product.name}</div>
+        <div className="description">
+          <p>Price: ${product.price.toFixed(2)}</p>
+          <p>Quantity: {quantity}</p>
+          <img src={product.pic_link} />
+        </div>
+      </div>
+      <div className="extra content">
+        <div className="ui two buttons">
+          <Button basic color="red" onClick={handleDeleteProductInCart}>
+            Remove
+          </Button>
+          {showEditQtyForm ? (
+            <Button basic color="green" onClick={handleClickEdit}>
+              Cancel
+            </Button>
+          ) : (
+            <Button basic color="green" onClick={handleClickEdit}>
+              Edit
+            </Button>
+          )}
+        </div>
+        {showEditQtyForm && (
+          <Form onSubmit={handleEditQuantityInCart}>
+            <Form.Field>
+              <input
+                type="number"
+                name="quantity"
+                min="1"
+                value={editQuantity.quantity}
+                onChange={handleChangeEdit}
+              />
+            </Form.Field>
+            <Button basic color="green" type="submit">
+              Update
+            </Button>
+          </Form>
+        )}
+      </div>
     </div>
   )
 }

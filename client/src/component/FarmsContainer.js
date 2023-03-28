@@ -1,36 +1,31 @@
-import { useState, useEffect } from 'react' 
-// import { useHistory } from 'react-router-dom'
-import FarmCard from './FarmCard'
+import { useState, useEffect } from 'react';
+import { Card, Container } from 'semantic-ui-react';
+import FarmCard from './FarmCard';
 
 const FarmsContainer = () => {
-
-  // const history = useHistory()
-  const  [farms, setfarms] = useState([]);
+  const [farms, setFarms] = useState([]);
 
   useEffect(() => {
     const fetchFarms = async () => {
       try {
-        const resp = await fetch("/farms")
-        const data = await resp.json()
-        setfarms(data)
-      } catch(error) {
-        alert(error)
+        const resp = await fetch('/farms');
+        const data = await resp.json();
+        setFarms(data);
+      } catch (error) {
+        alert(error);
       }
-    } 
-    fetchFarms()
+    };
+    fetchFarms();
   }, []);
 
-  const mappedFarms = farms.map(farm => (
-    <FarmCard {...farm} key={farm.id}  />
-  ))
+  const mappedFarms = farms.map(farm => <FarmCard {...farm} key={farm.id} />);
 
   return (
-    <div>FarmsContainer
-      <div>
-        {mappedFarms}
-      </div>
-    </div>
-  )
-}
+    <Container style={{ marginTop: '10em' }}>
+      <h2>Farms</h2>
+      <Card.Group>{mappedFarms}</Card.Group>
+    </Container>
+  );
+};
 
-export default FarmsContainer
+export default FarmsContainer;

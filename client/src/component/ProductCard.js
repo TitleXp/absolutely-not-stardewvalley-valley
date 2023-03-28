@@ -1,32 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
+import { Card, Image, Button, Input } from 'semantic-ui-react';
 import { CartContext } from '../context/cartContext';
 import { UserContext } from '../context/userContext';
 
-
 const ProductCard = ({ id, category, description, name, pic_link, price, stock }) => {
 
+  const { cart, setCart } = useContext(CartContext);
+  const { currentUser } = useContext(UserContext);
 
-  const {cart, setCart} = useContext(CartContext)
-  const {currentUser} = useContext(UserContext)
-
-  const [quantity, setQuantity] = useState(0)
-  const [purchase, setPurchase] = useState([])
-
-  console.log("this is currentUser", currentUser)
-
-
-
-  // testing with default value of 1, change it later
-  const purchaseID = 1
-
-  console.log(id)
+  const [quantity, setQuantity] = useState(0);
 
   const productData = {
     product_id: id,
     quantity: quantity,
-    purchase_id: purchaseID
-
-  }
+    purchase_id: 1, // testing with default value of 1, change it later
+  };
 
   const handleAddToCart = () => {
     fetch("/carts", {
@@ -37,27 +25,24 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
       body: JSON.stringify(productData)
     })
     .then(res => res.json())
-    // .then(productObj => setCart(currentVal => console.log(currentVal)))
     .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
     .catch(error => alert(error))
-  }
-
-  console.log("this is cart", cart)
+  };
 
   return (
-    <div>ProductCard
-      <div>
-        <p>{name}</p>
-        <img src={pic_link}></img>
-        <p>{description}</p>
-        <p>category: {category}</p>
-        <p>Price: {price}</p>
-        <p>Stock: {stock}</p>
-      </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
-      <input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
-    </div>
-  )
-}
+    <Card>
+      <Image src={pic_link} style={{ width: '100px', height: '100px' }} wrapped ui={false} />
+      <Card.Content>
+        <Card.Header>{name}</Card.Header>
+        <Card.Meta>{category}</Card.Meta>
+        <Card.Description>{description}</Card.Description>
+        <Card.Meta>Price: {price}</Card.Meta>
+        <Card.Meta>Stock: {stock}</Card.Meta>
+        <Input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+        <Button onClick={handleAddToCart}>Add to Cart</Button>
+      </Card.Content>
+    </Card>
+  );
+};
 
-export default ProductCard
+export default ProductCard;

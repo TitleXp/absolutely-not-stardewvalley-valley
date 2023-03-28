@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
+import { Card, Container } from 'semantic-ui-react';
 import ProductCard from "./ProductCard";
 
 const FruitsContainer = () => {
@@ -24,10 +25,11 @@ const FruitsContainer = () => {
   ))
 
   return (
-    <div>FruitsContainer
-      {mappedFruits}
-    </div>
+    <Container>
+      <h1>Fruits</h1>
+      <Card.Group itemsPerRow={2}>{mappedFruits}</Card.Group>
+    </Container>
   )
 }
 
-export default FruitsContainer
+export default FruitsContainer;

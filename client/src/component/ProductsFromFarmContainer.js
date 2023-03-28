@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Container, Card, Image, Header } from 'semantic-ui-react'
 import ProductCard from './ProductCard'
 import FarmerCard from './FarmerCard'
-
-
 
 const ProductsFromFarmContainer = () => {
 
@@ -12,6 +11,8 @@ const ProductsFromFarmContainer = () => {
     products: []
   })
 
+  const [farmer, setFarmer] = useState([])
+  
   const param = useParams()
 
   useEffect(() => {
@@ -27,21 +28,40 @@ const ProductsFromFarmContainer = () => {
     fetchFarmProduct()
   }, []);
 
+  useEffect(() => {
+    const fetchFarmer = async () => {
+      try {
+        const resp = await fetch(`/farmers/${param.id}`)
+        const data = await resp.json()
+        setFarmer(data)
+      } catch(error) {
+        alert(error)
+      }
+    } 
+    fetchFarmer()
+  }, []);
+
+  console.log('this is farmer', farmer)
+
   const mappedProductsFromFarm = farm.products.map(product => (
     <ProductCard {...product} key={product.id}  />
   ))
 
-  // console.log(mappedProductsFromFarm)
-
   return (
-    <div>ProductsFromFarmContainer
-      <div>
-        <FarmerCard />
-      </div>
-      <div>
+    <Container style={{ marginTop: '10em' }}>
+      <Header as='h2'>Farmer Information</Header>
+      <Card fluid>
+        <Image src={farmer.sprite_link} style={{ width: '100px', height: '100px' }} wrapped ui={false} />
+        <Card.Content>
+          <Card.Header>{farmer.name}</Card.Header>
+          <Card.Description>{farmer.bio}</Card.Description>
+        </Card.Content>
+      </Card>
+      <Header as='h2'>Products from Farm</Header>
+      <Card.Group>
         {mappedProductsFromFarm}
-      </div>
-    </div>
+      </Card.Group>
+    </Container>
   )
 }
 
