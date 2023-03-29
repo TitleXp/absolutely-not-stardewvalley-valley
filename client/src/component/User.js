@@ -15,6 +15,8 @@ const User = () => {
       .then(data => setCompletedPurchase(data))
   }, [])
 
+  console.log('completed purchase',completedPurchase)
+
   const mappedCompleted = completedPurchase?.map(completed => (
     <CompletedCard {...completed} key={completed.id} />
   ))

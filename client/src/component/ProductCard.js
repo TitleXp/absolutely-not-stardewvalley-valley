@@ -11,14 +11,18 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
   const [quantity, setQuantity] = useState(0);
 
   // console.log('product card level purchaseId', purchaseId)
-  console.log('product card level currentUser PurchaseId', currentUser?.purchases[0].id) // this shows purchase_id
   console.log('cart context', cart)
+
+
+  // getting the customer's latest purchase_id, this is needed because after purchase we need to issue a new purchase_id
+  const latestPurchase = currentUser?.purchases[currentUser?.purchases.length - 1]
+  const custPurchaseId = latestPurchase ? latestPurchase.id : null
 
 
   const productData = {
     product_id: id,
     quantity: quantity,
-    purchase_id: currentUser?.purchases[0].id, 
+    purchase_id: custPurchaseId, 
   };
 
   const handleAddToCart = () => {
@@ -33,8 +37,8 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
     .then(data => {
       const productObj = data.product;
       setCart(currentCart => 
-        console.log(currentCart)
-        // [productObj, ...currentCart]
+        // console.log(currentCart)
+        [productObj, ...currentCart]
         );
     })
     .catch(error => alert(error))

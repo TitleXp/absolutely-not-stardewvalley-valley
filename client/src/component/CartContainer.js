@@ -8,6 +8,8 @@ import CheckoutForm from './CheckoutForm'
 import { Button, Header, Icon, Divider } from 'semantic-ui-react';
 
 // import StripeCheckout from 'react-stripe-checkout'
+import { UserContext } from '../context/userContext'
+
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 
@@ -16,8 +18,17 @@ const stripePromise = loadStripe('pk_test_51MmPMkKVBulZTKggDXMGrLIIqMtVV8tgTYrYP
 
 const CartContainer = ({ purchaseId, userId, setPurchaseId }) => {
 
+  const {currentUser, setCurrentUser} = useContext(UserContext)
+
   const [clientSecret, setClientSecret] = useState(null)
   const [total, setTotal] = useState(0)
+
+  console.log('purchase ID', purchaseId)
+
+  const latestPurchase = currentUser?.purchases[currentUser?.purchases.length - 1]
+  const custPurchaseId = latestPurchase ? latestPurchase.id : null
+
+console.log('current customer purchaseID',custPurchaseId)
 
   const history = useHistory()
 
@@ -29,19 +40,19 @@ const CartContainer = ({ purchaseId, userId, setPurchaseId }) => {
   ))
 
 
-  const totalPrice = cart?.reduce((acc, { quantity, product }) => {
+  const totalPrice = cart.reduce((acc, { quantity, product }) => {
     return acc + quantity * product.price;
   }, 0);
 
   const handleBought = () => {
         // flipping the boolean for is_purchased in purchase table
-    fetch(`/purchases/${purchaseId}`, {
+    fetch(`/purchases/${custPurchaseId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        is_purchase: true
+        is_purchased: true
       })
     })
     .then(res => res.json())

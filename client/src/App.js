@@ -41,9 +41,9 @@ function App() {
 
   // console.log('app level currentUser', currentUser)
   // console.log('current user id', currentUser.id)
-  console.log('app level userId', userId)
-  console.log('app level purchaseID',purchaseId)
-  console.log('app level current user ID', id)
+  // console.log('app level userId', userId)
+  // console.log('app level purchaseID',purchaseId)
+  // console.log('app level current user ID', id)
 
 
   const [showLogin, setshowLogin] = useState(true);

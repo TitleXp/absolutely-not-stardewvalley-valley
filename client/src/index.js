@@ -17,11 +17,11 @@ root.render(
   <ErrorProvider>
     <UserProvider>
       <CartProvider>
-        <React.StrictMode>
+        {/* <React.StrictMode> */}
           <Router>
             <App />
           </Router>
-        </React.StrictMode>
+        {/* </React.StrictMode> */}
       </CartProvider>
     </UserProvider>
   </ErrorProvider>
