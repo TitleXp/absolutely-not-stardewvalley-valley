@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import CartCard from './CartCard'
 import { CartContext } from '../context/cartContext'
 import CheckoutForm from './CheckoutForm'
+import {Segment} from 'semantic-ui-react'
 
 
 import { Button, Header, Icon, Divider, Container } from 'semantic-ui-react';
@@ -139,9 +140,12 @@ console.log('current customer purchaseID',custPurchaseId)
         <>
           <Divider />
           
-          <Header as="h3">
-            Grand Total: ${totalPrice.toFixed(2)}
-          </Header>
+          <Segment raised textAlign='left'>
+            <Header as="h3">
+              Grand Total: ${totalPrice.toFixed(2)}
+            </Header>
+          </Segment>
+          
           
           <Button color="green" onClick={handlePurchase}>
             Checkout

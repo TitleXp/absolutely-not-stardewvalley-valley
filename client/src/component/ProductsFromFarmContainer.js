@@ -41,7 +41,7 @@ const ProductsFromFarmContainer = () => {
     fetchFarmer()
   }, []);
 
-  console.log('this is farmer', farmer)
+  // console.log('this is farmer', farmer)
 
   const mappedProductsFromFarm = farm.products.map(product => (
     <ProductCard {...product} key={product.id}  />
@@ -55,11 +55,11 @@ const ProductsFromFarmContainer = () => {
         <Card.Content>
           <Card.Header>{farmer.name}</Card.Header>
           <Card.Content>Age: {farmer.age}</Card.Content>
-          <Card.Description>{farmer.bio}</Card.Description>
+          <Card.Description>Bio: {farmer.bio}</Card.Description>
         </Card.Content>
       </Card>
       <Header as='h2'>Products from {farmer.name}'s Farm</Header>
-      <Card.Group>
+      <Card.Group itemsPerRow={3} className="product-card-group">
         {mappedProductsFromFarm}
       </Card.Group>
     </Container>

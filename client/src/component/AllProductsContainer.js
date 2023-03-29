@@ -30,6 +30,7 @@ const AllProductsContainer = ({ purchaseId }) => {
     <ProductCard {...product} key={product.id} purchaseId={purchaseId} />
   ))
 
+
   return (
     <Container style={{ marginTop: '10em' }} textAlign='center' >
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />

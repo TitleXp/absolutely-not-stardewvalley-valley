@@ -20,7 +20,8 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
   const latestPurchase = currentUser?.purchases[currentUser?.purchases.length - 1]
   const custPurchaseId = latestPurchase ? latestPurchase.id : null
 
-  const quantityToAdd = Math.min(quantity, stock)
+  // const quantityToAdd = Math.min(quantity, stock)
+  const quantityToAdd = quantity === 0 ? 1 : Math.min(quantity, stock)
 
   const productData = {
     product_id: id,
@@ -58,11 +59,12 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
       <Card.Description>{description}</Card.Description>
       <Card.Meta>Price: {price}</Card.Meta>
       <Card.Meta>Stock: {stock}</Card.Meta>
+      {/* <Card.Meta>From: {farm.location}</Card.Meta> */}
       {currentUser === null ? 
          <p>Please <Link to="/loginsignup">log in</Link> to add to cart</p>
         :
         <div>
-          <Input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min={0} max={stock} />
+          <Input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min={1} max={stock} />
           <Button onClick={handleAddToCart}>Add to Cart</Button>
         </div>
       }

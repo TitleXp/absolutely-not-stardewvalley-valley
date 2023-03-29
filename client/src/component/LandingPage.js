@@ -8,7 +8,7 @@ const LandingPage = () => {
 
   return (
     <div className='landing-page'>
-      <Container style={{ marginTop: '10em' }} textAlign='center' text>
+      <Container style={{ marginTop: '8.5em' }} textAlign='center' text>
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
         <Segment textAlign='center'>
           <Header as='h1'>Welcome to Absolutely-not-StarDewValley</Header>

@@ -106,7 +106,8 @@ const SignUp = ({ handleLogInSignUp, userId, setPurchaseId, setUserId }) => {
   return (
     <Container style={{ marginTop: '10em' }}  textAlign='center'>
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
-        <Button onClick={handleLogInSignUp}>Already have an account? Log in!</Button>
+      <br />
+      <Button onClick={handleLogInSignUp}>Already have an account? Log in!</Button>
       <Form onSubmit={handleSubmit} style={{ marginTop: '10em' }}>
       <h2>Sign up</h2>
         <Form.Field>
