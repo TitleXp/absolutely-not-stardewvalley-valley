@@ -31,7 +31,7 @@ const FruitsContainer = () => {
   ))
 
   return (
-    <Container style={{ marginTop: '10em' }}>
+    <Container style={{ marginTop: '10em' }} textAlign='center'>
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
       <h1>Fruits</h1>
       <SearchProduct searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>

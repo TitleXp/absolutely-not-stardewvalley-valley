@@ -85,49 +85,49 @@ std_farm = Farm.create!(
   name: Faker::Company.name,
   location: Faker::Address.city(options: { with_state: true }),
   farm_pic_link: "https://stardewvalleywiki.com/mediawiki/images/d/de/Standard_Farm.png",
-  farm_id: Farmer.all.sample.id
+  farmer_id: maru.id
 )
 
 riverland_farm = Farm.create!(
   name: Faker::Company.name,
   location: Faker::Address.city(options: { with_state: true }),
   farm_pic_link: "https://stardewvalleywiki.com/mediawiki/images/a/ad/Riverlands_Farm.png",
-  farm_id: Farmer.all.sample.id
+  farmer_id: haley.id
 )
 
 forest_farm = Farm.create!(
   name: Faker::Company.name,
   location: Faker::Address.city(options: { with_state: true }),
   farm_pic_link: "https://stardewvalleywiki.com/mediawiki/images/6/64/Forest_Farm.png",
-  farm_id: Farmer.all.sample.id
+  farmer_id: leah.id
 )
 
 hilltop_farm = Farm.create!(
   name: Faker::Company.name,
   location: Faker::Address.city(options: { with_state: true }),
   farm_pic_link: "https://stardewvalleywiki.com/mediawiki/images/4/40/Hilltop_Farm.png",
-  farm_id: Farmer.all.sample.id
+  farmer_id: abigail.id
 )
 
 wilderness_farm = Farm.create!(
   name: Faker::Company.name,
   location: Faker::Address.city(options: { with_state: true }),
   farm_pic_link: "https://stardewvalleywiki.com/mediawiki/images/f/fd/Wilderness_Farm.png",
-  farm_id: Farmer.all.sample.id
+  farmer_id: shane.id
 )
 
-4corners_farm = Farm.create!(
+four_corners_farm = Farm.create!(
   name: Faker::Company.name,
   location: Faker::Address.city(options: { with_state: true }),
   farm_pic_link: "https://stardewvalleywiki.com/mediawiki/images/c/c5/Four_Corners_Farm.png",
-  farm_id: Farmer.all.sample.id
+  farmer_id: harvey.id
 )
 
 beach_farm = Farm.create!(
   name: Faker::Company.name,
   location: Faker::Address.city(options: { with_state: true }),
   farm_pic_link: "https://stardewvalleywiki.com/mediawiki/images/d/d9/Beach_Farm.png",
-  farm_id: Farmer.all.sample.id
+  farmer_id: sebastian.id
 )
 
 

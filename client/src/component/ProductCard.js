@@ -12,17 +12,19 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
   const [quantity, setQuantity] = useState(0);
 
   // console.log('product card level purchaseId', purchaseId)
-  console.log('cart context', cart)
+  // console.log('cart context', cart)
+  // console.log(stock)
 
 
   // getting the customer's latest purchase_id, this is needed because after purchase we need to issue a new purchase_id
   const latestPurchase = currentUser?.purchases[currentUser?.purchases.length - 1]
   const custPurchaseId = latestPurchase ? latestPurchase.id : null
 
+  const quantityToAdd = Math.min(quantity, stock)
 
   const productData = {
     product_id: id,
-    quantity: quantity,
+    quantity: quantityToAdd, // if doesn't work change to 'quantity
     purchase_id: custPurchaseId, 
   };
 
@@ -43,6 +45,7 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
     //     );
     // })
     .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
+    setQuantity(0)
     .catch(error => alert(error))
   };
 
@@ -59,7 +62,7 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
          <p>Please <Link to="/loginsignup">log in</Link> to add to cart</p>
         :
         <div>
-          <Input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          <Input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min={0} max={stock} />
           <Button onClick={handleAddToCart}>Add to Cart</Button>
         </div>
       }

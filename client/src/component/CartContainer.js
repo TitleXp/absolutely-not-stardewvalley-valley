@@ -107,8 +107,8 @@ console.log('current customer purchaseID',custPurchaseId)
       setTotal(data.total)
       setClientSecret(data.clientSecret)
     })
-    handleBought()
-    createPurchaseId(userId)
+    handleBought() // flips the boolean is_purchase to 'true'
+    createPurchaseId(userId) // generates a new purchaseId for the user
 
 
   }
@@ -134,15 +134,21 @@ console.log('current customer purchaseID',custPurchaseId)
         </div> : 
         mappedCart}
 
-      <Divider />
+      {cart.length === 0 ? 
+        null :
+        <>
+          <Divider />
+          
+          <Header as="h3">
+            Grand Total: ${totalPrice.toFixed(2)}
+          </Header>
+          
+          <Button color="green" onClick={handlePurchase}>
+            Checkout
+          </Button>
+        </> 
+      }
       
-      <Header as="h3">
-        Grand Total: ${totalPrice.toFixed(2)}
-      </Header>
-      
-      <Button color="green" onClick={handlePurchase}>
-        Checkout
-      </Button>
 
       {clientSecret && (
         <Elements stripe={stripePromise} options={options}>

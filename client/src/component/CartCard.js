@@ -45,7 +45,7 @@ const CartCard = ({id, quantity, product, setCart}) => {
         }
         return element
       }))
-      setShowEditQtyForm(true)
+      setShowEditQtyForm(false)
     })
     .catch(error => alert(error))
   }

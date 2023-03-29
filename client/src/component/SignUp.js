@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { UserContext } from "../context/userContext"
 import { ErrorContext } from "../context/errorContext"
-import { Form, Button, Message } from 'semantic-ui-react'
+import { Form, Button, Message, Container } from 'semantic-ui-react'
 
 const SignUp = ({ handleLogInSignUp, userId, setPurchaseId, setUserId }) => {
 
@@ -104,7 +104,7 @@ const SignUp = ({ handleLogInSignUp, userId, setPurchaseId, setUserId }) => {
   // console.log('current User', currentUser)
 
   return (
-    <div>
+    <Container textAlign='center'>
       <Form onSubmit={handleSubmit} style={{ marginTop: '10em' }}>
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
       <h2>Sign up</h2>
@@ -137,7 +137,7 @@ const SignUp = ({ handleLogInSignUp, userId, setPurchaseId, setUserId }) => {
       </Form>
       {error && <Message negative>{error.text}</Message>}
 
-    </div>
+    </Container>
   )
 }
 
