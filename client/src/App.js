@@ -7,8 +7,9 @@ import './App.css';
 
 import NavBar from './component/NavBar';
 import Notification from './component/Notification';
-import SignUp from './component/SignUp';
-import LogIn from './component/LogIn';
+// import SignUp from './component/SignUp';
+// import LogIn from './component/LogIn';
+import AuthContainer from './component/AuthContainer';
 import User from './component/User';
 import FarmContainer from './component/FarmsContainer'
 import AllProductsContainer from './component/AllProductsContainer';
@@ -47,12 +48,12 @@ function App() {
   // console.log('app level current user ID', id)
 
 
-  const [showLogin, setshowLogin] = useState(true);
+  // const [showLogin, setshowLogin] = useState(true);
 
   // const isAdmin = currentUser.admin
-  const handleLogInSignUp = () => {
-      setshowLogin(currentVal => !currentVal)
-  }
+  // const handleLogInSignUp = () => {
+  //     setshowLogin(currentVal => !currentVal)
+  // }
 
 
   
@@ -72,11 +73,7 @@ function App() {
         <Switch>
 
           <Route exact path="/loginsignup" >
-            <>
-              {showLogin ? 
-                <LogIn handleLogInSignUp={handleLogInSignUp} /> : 
-                <SignUp handleLogInSignUp={handleLogInSignUp} userId={userId} setPurchaseId={setPurchaseId} setUserId={setUserId} /> }  
-            </>
+            <AuthContainer />
           </Route>
 
           <Route exact path="/home">

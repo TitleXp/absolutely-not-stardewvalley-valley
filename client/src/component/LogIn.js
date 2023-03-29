@@ -52,11 +52,11 @@ const LogIn = ({ handleLogInSignUp }) => {
   }
 
   return (
-    <Container textAlign='center'>
-      <Form onSubmit={handleSubmit} style={{ marginTop: '10em' }}>
+    <Container style={{ marginTop: '10em' }}  textAlign='center' >
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
+      <Button onClick={handleLogInSignUp}> No account? Sign Up! </Button>
+      <Form onSubmit={handleSubmit} style={{ marginTop: '10em' }}>
         <h2>Log in</h2>
-        <Button onClick={handleLogInSignUp}> No account? Sign Up! </Button>
         <Form.Input 
           type="text" 
           onChange={handleLogInChange} 
