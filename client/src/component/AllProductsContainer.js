@@ -36,7 +36,7 @@ console.log('allproductscontainer level', purchaseId)
       <h1>All Products</h1>
       <SearchProduct searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
       <br />
-      <Card.Group itemsPerRow={2} className="product-card-group">
+      <Card.Group itemsPerRow={3} className="product-card-group">
         {mappedAllProducts}
       </Card.Group>
     </Container>

@@ -36,7 +36,7 @@ const FruitsContainer = () => {
       <h1>Fruits</h1>
       <SearchProduct searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
       <br />
-      <Card.Group itemsPerRow={2}>{mappedFruits}</Card.Group>
+      <Card.Group itemsPerRow={3}>{mappedFruits}</Card.Group>
     </Container>
   )
 }

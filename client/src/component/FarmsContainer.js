@@ -27,7 +27,7 @@ const FarmsContainer = () => {
       {/* logo */}
       <img src="https://i.imgur.com/rHEZqK5.png" width={700}  />
       <h2>Farms</h2>
-      <Card.Group>{mappedFarms}</Card.Group>
+      <Card.Group  itemsPerRow={3} >{mappedFarms}</Card.Group>
     </Container>
   );
 };

@@ -11,7 +11,7 @@ const SignUp = ({ handleLogInSignUp, userId, setPurchaseId, setUserId }) => {
   const {currentUser, setCurrentUser} = useContext(UserContext)
   const {error, setError} = useContext(ErrorContext)
 
-  console.log('signup level userId', userId )
+  // console.log('signup level userId', userId )
 
 
   const [newUser, setNewUser] = useState({
@@ -78,28 +78,30 @@ const SignUp = ({ handleLogInSignUp, userId, setPurchaseId, setUserId }) => {
         })
 
       } else {
-        // res.json().then((error) => {
-        //   alert(error)
-        // })
-        res.json().then(errorObj => {
-          if (typeof(errorObj.error) === 'string') {
-            setError({text: errorObj.error, type: ""})
-          } else {
-            setError(errorObj.error)
-          }
+
+        res.json().then((errorArr) => {
+          // alert(errorArr.errors) // this works
+          // console.log('error', errorArr.errors[0])
+          setError({text: errorArr.errors.join('. '), type: ""})
         })
+
+        // .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
+
+
+        // res.json().then(errorObj => {
+        //   if (typeof(errorObj.error) === 'string') {
+        //     setError({text: errorObj.error, type: ""})
+        //   } else {
+        //     setError(errorObj.error)
+        //   }
+        // })
       }
     })
     .catch((error) => alert(error))
-
-    
-
-    
-
   }
 
   // console.log('new user', newUser)
-  console.log('current User', currentUser)
+  // console.log('current User', currentUser)
 
   return (
     <div>
