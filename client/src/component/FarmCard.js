@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Image } from 'semantic-ui-react'
 
-const FarmCard = ({ id, name, location, farm_pic_link }) => {
+const FarmCard = ({ id, name, location, farm_pic_link, farmer }) => {
   return (
     <Card>
       <Image src={farm_pic_link} wrapped ui={false} />
@@ -13,6 +13,7 @@ const FarmCard = ({ id, name, location, farm_pic_link }) => {
         <Card.Meta>
           <span className='location'>{location}</span>
         </Card.Meta>
+        <Card.Description>Farmer: {farmer.name}</Card.Description>
       </Card.Content>
     </Card>
   )

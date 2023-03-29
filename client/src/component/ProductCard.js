@@ -34,13 +34,14 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
       body: JSON.stringify(productData)
     })
     .then(response => response.json())
-    .then(data => {
-      const productObj = data.product;
-      setCart(currentCart => 
-        // console.log(currentCart)
-        [productObj, ...currentCart]
-        );
-    })
+    // .then(data => {
+    //   const productObj = data.product;
+    //   setCart(currentCart => 
+    //     // console.log(currentCart)
+    //     [productObj, ...currentCart]
+    //     );
+    // })
+    .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
     .catch(error => alert(error))
   };
 
