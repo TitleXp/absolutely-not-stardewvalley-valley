@@ -14,7 +14,7 @@ const NavBar = () => {
     }).then((res) => {
       if (res.ok) {
         setCurrentUser(null)
-        history.push('/loginsignup');
+        history.push('/home');
       } else {
         res.json().then(error => alert(error))
       }
@@ -24,11 +24,14 @@ const NavBar = () => {
   if (!currentUser) {
     return (
       <Menu fluid inverted size='huge' fixed='top'>
+
+        <Menu.Item as={NavLink} to='/home'>Home</Menu.Item>
+
         
         <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
         <Dropdown item text='Products'>
-          <Dropdown.Menu>
+          <Dropdown.Menu >
             
             <Dropdown.Item as={Link} to='/products'>All Products</Dropdown.Item>
             <Dropdown.Item as={Link} to='/fruits'>Fruits</Dropdown.Item>
@@ -48,6 +51,9 @@ const NavBar = () => {
   if (currentUser.admin === true) {
     return (
       <Menu fluid inverted size='huge' fixed='top'>
+
+        <Menu.Item as={Link} to='/home'>Home</Menu.Item>
+
         <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
         <Dropdown item text='Products'>
@@ -76,6 +82,8 @@ const NavBar = () => {
 
   return (
     <Menu fluid inverted size='huge' fixed='top'>
+      <Menu.Item as={NavLink} to='/home'>Home</Menu.Item>
+
       <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
       <Dropdown item text='Products'>

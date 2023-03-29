@@ -16,6 +16,7 @@ import ProductsFromFarmContainer from './component/ProductsFromFarmContainer'
 import FruitsContainer from './component/FruitsContainer'
 import VegetablesContainer from './component/VegetablesContainer'
 import CartContainer from './component/CartContainer'
+import LandingPage from './component/LandingPage';
 // import ShippingForm from './component/ShippingForm'
 
 import { UserContext } from './context/userContext';
@@ -78,6 +79,10 @@ function App() {
             </>
           </Route>
 
+          <Route exact path="/home">
+            <LandingPage />
+          </Route>
+
           <Route exact path="/farms">
             <FarmContainer />
           </Route>
@@ -113,6 +118,11 @@ function App() {
       <div>
         <NavBar />
         <Switch>
+
+          <Route exact path="/home">
+            <LandingPage />
+          </Route>
+
 
           <Route exact path="/profile" >
             <User />
@@ -164,6 +174,10 @@ function App() {
         <NavBar />
         <Notification />
         <Switch>
+
+         <Route exact path="/home">
+            <LandingPage />
+          </Route>
 
           <Route exact path="/profile" >
             <User />
