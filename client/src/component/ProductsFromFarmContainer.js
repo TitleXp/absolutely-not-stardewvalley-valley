@@ -58,7 +58,7 @@ const ProductsFromFarmContainer = () => {
           <Card.Description>{farmer.bio}</Card.Description>
         </Card.Content>
       </Card>
-      <Header as='h2'>Products from Farm</Header>
+      <Header as='h2'>Products from {farmer.name}'s Farm</Header>
       <Card.Group>
         {mappedProductsFromFarm}
       </Card.Group>

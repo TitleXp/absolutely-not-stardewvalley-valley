@@ -283,6 +283,146 @@ radish = Product.create!(
   farm_id: Farm.all.sample.id
 )
 
+red_cabbage = Product.create!(
+  name: "Red Cabbage",
+  category: "vegetable",
+  description: "Often used in salads and coleslaws. The color can range from purple to blue to green-yellow depending on soil conditions",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/2/2d/Red_Cabbage.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+tomato = Product.create!(
+  name: "Tomato",
+  category: "vegetable",
+  description: "Rich and slightly tangy, the Tomato has a wide variety of culinary uses",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/9/9d/Tomato.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+wheat = Product.create!(
+  name: "Wheat",
+  category: "vegetable",
+  description: "One of the most widely cultivated grains. Makes a great flour for breads and cakes",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/e/e2/Wheat.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+artichoke = Product.create!(
+  name: "Artichoke",
+  category: "vegetable",
+  description: "The bud of a thistle plant. The spiny outer leaves conceal a fleshy, filling interior",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/d/dd/Artichoke.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+beet = Product.create!(
+  name: "Beet",
+  category: "vegetable",
+  description: "The bud of a thistle plant. The spiny outer leaves conceal a fleshy, filling interior",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/a/a4/Beet.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+cranberries = Product.create!(
+  name: "Cranberries",
+  category: "fruit",
+  description: "These tart red berries are a traditional winter food",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/6/6e/Cranberries.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+pineapple = Product.create!(
+  name: "Pineapple",
+  category: "fruit",
+  description: "A sweet and tangy tropical treat",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/f/fb/Pineapple.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+apricot = Product.create!(
+  name: "Apricot",
+  category: "fruit",
+  description: "A tender little fruit with a rock-hard pit",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/f/fc/Apricot.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+cherry = Product.create!(
+  name: "Cherry",
+  category: "fruit",
+  description: "It's popular, and ripens sooner than most other fruits",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/2/20/Cherry.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+banana = Product.create!(
+  name: "Banana",
+  category: "fruit",
+  description: "A sweet, starchy tropical fruit",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/6/69/Banana.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+mango = Product.create!(
+  name: "Mango",
+  category: "fruit",
+  description: "A big, sweet tropical fruit with a unique flavor",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/3/38/Mango.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+apple = Product.create!(
+  name: "Apple",
+  category: "fruit",
+  description: "A crisp fruit used for juice and cider",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/7/7d/Apple.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+peach = Product.create!(
+  name: "Peach",
+  category: "fruit",
+  description: "It's almost fuzzy to the touch",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/e/e2/Peach.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
+orange = Product.create!(
+  name: "Orange",
+  category: "fruit",
+  description: "Juicy, tangy, and bursting with sweet summer aroma",
+  pic_link: "https://stardewvalleywiki.com/mediawiki/images/4/43/Orange.png",
+  price: Faker::Number.between(from: 1.00, to: 20.00),
+  stock: Faker::Number.between(from: 10, to: 100),
+  farm_id: Farm.all.sample.id
+)
+
 
 
 puts "Creating John Doe... "

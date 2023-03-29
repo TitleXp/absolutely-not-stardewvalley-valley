@@ -9,7 +9,7 @@ const AllProductsContainer = ({ purchaseId }) => {
   const [products, setProducts] = useState([])
   const [searchProduct, setSearchProduct] = useState("")
   
-console.log('allproductscontainer level', purchaseId)
+// console.log('allproductscontainer level', purchaseId)
 
   useEffect(() => {
     const fetchAllProducts = async () => {
