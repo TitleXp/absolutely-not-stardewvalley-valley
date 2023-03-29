@@ -14,7 +14,7 @@ import {loadStripe} from '@stripe/stripe-js';
 const stripePromise = loadStripe('pk_test_51MmPMkKVBulZTKggDXMGrLIIqMtVV8tgTYrYPqWJkp3QwumtXfCWytFXcd5IcU3um1pMPfsYP1C44ksZyFmSscYv00pb3CXkx4')
 
 
-const CartContainer = () => {
+const CartContainer = ({ purchaseId, userId, setPurchaseId }) => {
 
   const [clientSecret, setClientSecret] = useState(null)
   const [total, setTotal] = useState(0)
@@ -24,7 +24,7 @@ const CartContainer = () => {
   const {cart, setCart} = useContext(CartContext)
   console.log("this is cart", cart)
 
-  const mappedCart = cart?.map(cart => (
+  const mappedCart = cart.map(cart => (
     <CartCard {...cart} key={cart.id} setCart={setCart} total={total} />
   ))
 
@@ -32,6 +32,49 @@ const CartContainer = () => {
   const totalPrice = cart?.reduce((acc, { quantity, product }) => {
     return acc + quantity * product.price;
   }, 0);
+
+  const handleBought = () => {
+        // flipping the boolean for is_purchased in purchase table
+    fetch(`/purchases/${purchaseId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        is_purchase: true
+      })
+    })
+    .then(res => res.json())
+    .then()
+    .catch(error => alert(error))
+  }
+
+  const createPurchaseId = (userId) => {
+    // create new purchase for that user (empty cart)
+    fetch('/purchases', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id: userId
+      }),
+    })
+    .then((res) => {
+      if(res.ok) {
+        res.json().then(purchaseObj => {
+          setPurchaseId(purchaseObj.id)
+        })
+      } else {
+        console.log("could not create purchaseID")
+      }
+      res.json().then(
+        // some error message here
+      )
+    })
+    .catch((error) => alert(error))
+    
+  }
 
   
   const handlePurchase = () => {
@@ -51,6 +94,9 @@ const CartContainer = () => {
       setTotal(data.total)
       setClientSecret(data.clientSecret)
     })
+    handleBought()
+    createPurchaseId(userId)
+
 
   }
 

@@ -3,7 +3,7 @@ import { Button, Form } from 'semantic-ui-react';
 
 const CartCard = ({id, quantity, product, setCart}) => {
 
-  const [showEditQtyForm, setShowEditQtyForm] = useState(true)
+  const [showEditQtyForm, setShowEditQtyForm] = useState(false)
   const [editQuantity, setEditQuantity] = useState({
     quantity: quantity
   })

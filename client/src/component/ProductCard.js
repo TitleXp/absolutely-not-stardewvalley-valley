@@ -10,10 +10,15 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
 
   const [quantity, setQuantity] = useState(0);
 
+  // console.log('product card level purchaseId', purchaseId)
+  console.log('product card level currentUser PurchaseId', currentUser?.purchases[0].id) // this shows purchase_id
+  console.log('cart context', cart)
+
+
   const productData = {
     product_id: id,
     quantity: quantity,
-    purchase_id: 1, // testing with default value of 1, change it later
+    purchase_id: currentUser?.purchases[0].id, 
   };
 
   const handleAddToCart = () => {
@@ -24,8 +29,14 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
       },
       body: JSON.stringify(productData)
     })
-    .then(res => res.json())
-    .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
+    .then(response => response.json())
+    .then(data => {
+      const productObj = data.product;
+      setCart(currentCart => 
+        console.log(currentCart)
+        // [productObj, ...currentCart]
+        );
+    })
     .catch(error => alert(error))
   };
 

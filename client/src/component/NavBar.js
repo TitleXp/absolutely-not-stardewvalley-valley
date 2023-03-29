@@ -24,8 +24,7 @@ const NavBar = () => {
   if (!currentUser) {
     return (
       <Menu fluid inverted size='huge'>
-        <Menu.Item as={Link} to='/loginsignup'>LogIn/SignUp</Menu.Item>
-
+        
         <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
         <Dropdown item text='Products'>
@@ -36,6 +35,11 @@ const NavBar = () => {
             <Dropdown.Item as={Link} to='/vegetables'>Vegetables</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+
+        <Menu.Menu position='right'>
+          <Menu.Item as={Link} to='/loginsignup'>LogIn/SignUp</Menu.Item>
+        </Menu.Menu>
+
 
       </Menu>
     )

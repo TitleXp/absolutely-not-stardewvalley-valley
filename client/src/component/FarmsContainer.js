@@ -22,6 +22,7 @@ const FarmsContainer = () => {
 
   return (
     <Container style={{ marginTop: '10em' }}>
+      <img src="https://i.imgur.com/q1uo5IW.png" width={400} />
       <h2>Farms</h2>
       <Card.Group>{mappedFarms}</Card.Group>
     </Container>

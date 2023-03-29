@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'; 
+import { useContext, useEffect, useId, useState } from 'react'; 
 import { Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
 
@@ -23,10 +23,28 @@ import { ErrorContext } from './context/errorContext';
 
 function App() {
 
+  // useContext info
   const {currentUser, setCurrentUser} = useContext(UserContext) 
   const {error, setError} = useContext(ErrorContext)
 
-  // const stripePromise= loadStripe('pk_test_51MmPMkKVBulZTKggDXMGrLIIqMtVV8tgTYrYPqWJkp3QwumtXfCWytFXcd5IcU3um1pMPfsYP1C44ksZyFmSscYv00pb3CXkx4')
+
+  // const { id } = currentUser
+  const id = currentUser?.id
+  // grabbing userId for the purchaseId
+  const [userId, setUserId] = useState({
+    user_id: id
+  })
+
+  // setting purchaseId
+  const [purchaseId, setPurchaseId] = useState([])
+
+
+  // console.log('app level currentUser', currentUser)
+  // console.log('current user id', currentUser.id)
+  console.log('app level userId', userId)
+  console.log('app level purchaseID',purchaseId)
+  console.log('app level current user ID', id)
+
 
   const [showLogin, setshowLogin] = useState(true);
 
@@ -37,18 +55,26 @@ function App() {
 
 
   
+  useEffect(() => {
+    fetch('/purchases')
+    .then(res => res.json())
+    .then(data => setPurchaseId(data))
+  }, [])
+
+  
   if(!currentUser) { // what does the public sees/do?
     return(
       <div>
         <NavBar />
         <Notification />
+      
         <Switch>
 
           <Route exact path="/loginsignup" >
             <>
               {showLogin ? 
                 <LogIn handleLogInSignUp={handleLogInSignUp} /> : 
-                <SignUp handleLogInSignUp={handleLogInSignUp} /> }  
+                <SignUp handleLogInSignUp={handleLogInSignUp} userId={userId} setPurchaseId={setPurchaseId} setUserId={setUserId} /> }  
             </>
           </Route>
 
@@ -152,7 +178,7 @@ function App() {
           </Route>
 
           <Route exact path="/products">
-            <AllProductsContainer />
+            <AllProductsContainer purchaseId={purchaseId} />
           </Route>
 
           <Route exact path="/fruits">
@@ -164,7 +190,7 @@ function App() {
           </Route>
 
           <Route exact path="/cart">
-            <CartContainer />
+            <CartContainer purchaseId={purchaseId} userId={userId} setPurchaseId={setPurchaseId} />
           </Route>
 
           {/* <Route exact path="/checkout"> 

@@ -25,7 +25,7 @@ const VegetablesContainer = () => {
   ))
   
   return (
-    <Container>
+    <Container style={{ marginTop: '10em' }}>
       <h1>Vegetables</h1>
       <Card.Group itemsPerRow={2}>{mappedVegetables}</Card.Group>
     </Container>

@@ -53,7 +53,7 @@ const LogIn = ({ handleLogInSignUp }) => {
 
   return (
     <div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ marginTop: '10em' }}>
         <h2>Log in</h2>
         <Button onClick={handleLogInSignUp}> Sign Up! </Button>
         <Form.Input 
