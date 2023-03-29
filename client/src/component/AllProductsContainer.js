@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Card, Container } from 'semantic-ui-react'
+import { Button, Card, Container } from 'semantic-ui-react'
 import ProductCard from './ProductCard'
 import SearchProduct from './SearchProduct'
+import { Link } from 'react-router-dom'
 
 const AllProductsContainer = ({ purchaseId }) => {
 
@@ -34,6 +35,8 @@ const AllProductsContainer = ({ purchaseId }) => {
   return (
     <Container style={{ marginTop: '10em' }} textAlign='center' >
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
+      <br />
+      <Button as={Link} to='/cart' color='yellow'>Go to Cart</Button>
       <h1>All Products</h1>
       <SearchProduct searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
       <br />

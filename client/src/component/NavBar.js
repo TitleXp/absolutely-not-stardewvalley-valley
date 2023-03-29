@@ -30,7 +30,7 @@ const NavBar = () => {
         
         <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
-        <Dropdown item text='Products'>
+        <Dropdown item text='Products' >
           <Dropdown.Menu >
             
             <Dropdown.Item as={Link} to='/products'>All Products</Dropdown.Item>

@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Container, Card, Image, Header } from 'semantic-ui-react'
+import { Container, Card, Image, Header, Button } from 'semantic-ui-react'
 import ProductCard from './ProductCard'
 import FarmerCard from './FarmerCard'
+import { Link } from 'react-router-dom'
 
 const ProductsFromFarmContainer = () => {
 
@@ -58,6 +59,9 @@ const ProductsFromFarmContainer = () => {
           <Card.Description>Bio: {farmer.bio}</Card.Description>
         </Card.Content>
       </Card>
+      <br />
+      <Button as={Link} to='/cart' color='yellow'>Go to Cart</Button>
+
       <Header as='h2'>Products from {farmer.name}'s Farm</Header>
       <Card.Group itemsPerRow={3} className="product-card-group">
         {mappedProductsFromFarm}

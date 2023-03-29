@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Card, Container } from 'semantic-ui-react';
+import { Card, Container, Button } from 'semantic-ui-react';
 import FarmCard from './FarmCard';
+import { Link } from 'react-router-dom';
 
 const FarmsContainer = () => {
   const [farms, setFarms] = useState([]);
@@ -24,8 +25,9 @@ const FarmsContainer = () => {
   
   return (
     <Container style={{ marginTop: '10em' }} textAlign='center'>
-      {/* logo */}
       <img src="https://i.imgur.com/rHEZqK5.png" width={700}  />
+      <br />
+      <Button as={Link} to='/products' color='blue'>Go to Shopping</Button>
       <h2>Farms</h2>
       <Card.Group  itemsPerRow={3} >{mappedFarms}</Card.Group>
     </Container>

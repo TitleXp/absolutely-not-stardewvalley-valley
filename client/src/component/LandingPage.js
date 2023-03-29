@@ -26,13 +26,12 @@ const LandingPage = () => {
               here!
             </p>
           ) : null}
-          <strong>or</strong>
           <br />
+        </Segment>
           <Button.Group>
             <Button as={Link} to='/farms' color='green'>View Farms</Button>
             <Button as={Link} to='/products' color='teal'>View Products</Button>
           </Button.Group>
-        </Segment>
       </Container>
     </div>
   )

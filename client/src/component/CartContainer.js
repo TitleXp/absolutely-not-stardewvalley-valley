@@ -128,6 +128,7 @@ console.log('current customer purchaseID',custPurchaseId)
         <Icon name="cart" />
         Shopping Cart
       </Header>
+      <Button as={Link} to='/products' color='yellow'>Back to Shopping</Button>
       {cart.length === 0 ? 
         <div className="ui message" color="yellow">
           <div className="header">Nothing in cart</div>
