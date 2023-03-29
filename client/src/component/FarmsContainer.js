@@ -20,6 +20,7 @@ const FarmsContainer = () => {
 
   const mappedFarms = farms.map(farm => <FarmCard {...farm} key={farm.id} />);
 
+  console.log('these are farms', farms)
   
   return (
     <Container style={{ marginTop: '10em' }}>

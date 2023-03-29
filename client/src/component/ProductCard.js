@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Card, Image, Button, Input } from 'semantic-ui-react';
 import { CartContext } from '../context/cartContext';
 import { UserContext } from '../context/userContext';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ id, category, description, name, pic_link, price, stock }) => {
 
@@ -47,17 +48,23 @@ const ProductCard = ({ id, category, description, name, pic_link, price, stock }
 
   return (
     <Card>
-      <Image src={pic_link} style={{ width: '100px', height: '100px' }} wrapped ui={false} />
-      <Card.Content>
-        <Card.Header>{name}</Card.Header>
-        <Card.Meta>{category}</Card.Meta>
-        <Card.Description>{description}</Card.Description>
-        <Card.Meta>Price: {price}</Card.Meta>
-        <Card.Meta>Stock: {stock}</Card.Meta>
-        <Input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-        <Button onClick={handleAddToCart}>Add to Cart</Button>
-      </Card.Content>
-    </Card>
+    <Image src={pic_link} style={{ width: '100px', height: '100px' }} wrapped ui={false} />
+    <Card.Content>
+      <Card.Header>{name}</Card.Header>
+      <Card.Meta>{category}</Card.Meta>
+      <Card.Description>{description}</Card.Description>
+      <Card.Meta>Price: {price}</Card.Meta>
+      <Card.Meta>Stock: {stock}</Card.Meta>
+      {currentUser === null ? 
+         <p>Please <Link to="/loginsignup">log in</Link> to add to cart</p>
+        :
+        <div>
+          <Input type="number" name="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          <Button onClick={handleAddToCart}>Add to Cart</Button>
+        </div>
+      }
+    </Card.Content>
+  </Card>
   );
 };
 

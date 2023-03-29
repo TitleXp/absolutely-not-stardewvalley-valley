@@ -54,6 +54,7 @@ const LogIn = ({ handleLogInSignUp }) => {
   return (
     <div>
       <Form onSubmit={handleSubmit} style={{ marginTop: '10em' }}>
+      <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
         <h2>Log in</h2>
         <Button onClick={handleLogInSignUp}> Sign Up! </Button>
         <Form.Input 

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../context/userContext'
-import { Button, Card, Form, Image } from 'semantic-ui-react'
+import { Button, Card, Form, Image, Container } from 'semantic-ui-react'
 import CompletedCard from './CompletedCard'
 
 const User = () => {
@@ -25,6 +25,9 @@ const User = () => {
 
   const [showEditBio, setShowEditBio] = useState(true)
   const [editBio, setEditBio] = useState({ bio })
+
+  const [showEditPic, setShowEditPic] = useState(true)
+  const [editPic, setEditPic] = useState({ profile_pic_link })
 
   const handleClickEditBio = () => {
     setShowEditBio(currentValue => !currentValue)
@@ -59,6 +62,39 @@ const User = () => {
       .catch(error => alert(error))
   }
 
+  const handleClickEditPic = (e) => {
+    setShowEditPic(currentValue => !currentValue)
+  }
+
+  const handleChangeEditPic = (e) => {
+    setEditPic(prevState => ({ ...prevState, [e.target.name]: e.target.value }))
+  }
+
+  const handleSubmitPic = (e) => {
+    e.preventDefault()
+    fetch(`/users/${currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editPic)
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+        // setError message here
+      })
+      .then(data => {
+        setCurrentUser(prevState => ({
+          ...prevState,
+          profile_pic_link: data.profile_pic_link
+        }))
+        setShowEditPic(true)
+      })
+      .catch(error => alert(error))
+  }
+
   const handleDeleteUser = () => {
     fetch(`/users/${currentUser.id}`, {
       method: "DELETE"
@@ -68,9 +104,31 @@ const User = () => {
   }
 
   return (
-    <div className="user">
+    <Container style={{ marginTop: '10em' }} >
       <Image src={profile_pic_link} size="medium" circular />
-
+      {showEditPic ? (
+                  <>
+                    {/* <span>{profile_pic_link}</span> */}
+                    <Button onClick={handleClickEditPic}>Change Profile Picture</Button>
+                  </>
+                ) : (
+                  <Form onSubmit={handleSubmitPic}>
+                    <Form.Input
+                      name="profile_pic_link"
+                      value={editPic.profile_pic_link}
+                      onChange={handleChangeEditPic}
+                      required
+                    />
+                    <Button.Group>
+                      <Button color="green" type="submit">
+                        Save
+                      </Button>
+                      <Button.Or />
+                      <Button onClick={handleClickEditPic}>Cancel</Button>
+                    </Button.Group>
+                  </Form>
+                )}
+      
       <div className="user-info">
         <Card fluid>
           <Card.Content>
@@ -118,7 +176,7 @@ const User = () => {
         <h3>Purchase history</h3>
         {mappedCompleted}
       </div>
-    </div>
+    </Container>
   )
 }
 

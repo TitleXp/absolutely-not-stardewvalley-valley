@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import CartCard from './CartCard'
 import { CartContext } from '../context/cartContext'
 import CheckoutForm from './CheckoutForm'
 
-import { Button, Header, Icon, Divider } from 'semantic-ui-react';
+
+import { Button, Header, Icon, Divider, Container } from 'semantic-ui-react';
 
 // import StripeCheckout from 'react-stripe-checkout'
 import { UserContext } from '../context/userContext'
@@ -120,12 +122,17 @@ console.log('current customer purchaseID',custPurchaseId)
 
   
   return (
-    <div>
+    <Container style={{ marginTop: '10em' }}>
       <Header as="h1">
         <Icon name="cart" />
         Shopping Cart
       </Header>
-      {mappedCart}
+      {cart.length === 0 ? 
+        <div className="ui message" color="yellow">
+          <div className="header">Nothing in cart</div>
+          <p>Browse for <Link to="/products">products</Link> here!</p>
+        </div> : 
+        mappedCart}
 
       <Divider />
       
@@ -142,7 +149,7 @@ console.log('current customer purchaseID',custPurchaseId)
           <CheckoutForm />
         </Elements>
       )}
-    </div>
+    </Container>
   )
 }
 
