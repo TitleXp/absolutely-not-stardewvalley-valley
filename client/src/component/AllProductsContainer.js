@@ -2,10 +2,12 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Card, Container } from 'semantic-ui-react'
 import ProductCard from './ProductCard'
+import SearchProduct from './SearchProduct'
 
 const AllProductsContainer = ({ purchaseId }) => {
 
   const [products, setProducts] = useState([])
+  const [searchProduct, setSearchProduct] = useState("")
   
 console.log('allproductscontainer level', purchaseId)
 
@@ -22,14 +24,18 @@ console.log('allproductscontainer level', purchaseId)
     fetchAllProducts()
   }, []);
 
-  const mappedAllProducts = products.map(product => (
+  const filteredProducts = products.filter(product => (product.name.toLowerCase().includes(searchProduct.toLowerCase())))
+
+  const mappedAllProducts = filteredProducts.map(product => (
     <ProductCard {...product} key={product.id} purchaseId={purchaseId} />
   ))
 
   return (
     <Container style={{ marginTop: '10em' }}>
-      <img src="https://i.imgur.com/q1uo5IW.png" width={400} />
+      <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
       <h1>All Products</h1>
+      <SearchProduct searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
+      <br />
       <Card.Group itemsPerRow={2} className="product-card-group">
         {mappedAllProducts}
       </Card.Group>

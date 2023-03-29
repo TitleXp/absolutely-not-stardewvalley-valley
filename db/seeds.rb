@@ -127,7 +127,7 @@ User.create!(
 
 puts "Creating users... "
 
-10.times do
+5.times do
   User.create!(
     username: Faker::Internet.username,
     email: Faker::Internet.email,
@@ -138,7 +138,7 @@ puts "Creating users... "
   )
 end
 
-puts "Creating purchases... "
+# puts "Creating purchases... "
 
 
 
@@ -152,21 +152,24 @@ puts "Creating purchases... "
 #   is_purchased: true
 # )
 
-Purchase.create!(
-  user_id: User.all.sample.id,
-  created_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
-  is_purchased: false
-)
+# Purchase.create!(
+#   user_id: User.all.sample.id,
+#   created_at: Faker::Date.between(from: 1.year.ago, to: Date.today),
+#   is_purchased: false
+# )
 
-puts "Creating carts for purchases... "
+# puts "Creating carts for purchases... "
 
-c1 = Cart.create!(
-  quantity: 123,
-  product_id: wild_horseradish.id,
-  purchase_id: Purchase.all.sample.id
-)
+# c1 = Cart.create!(
+#   quantity: 123,
+#   product_id: wild_horseradish.id,
+#   purchase_id: Purchase.all.sample.id
+# )
 
 puts "seeding done"
+
+
+
 
 
 # anything below this line is for testing purposes

@@ -2,10 +2,14 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { Card, Container } from 'semantic-ui-react';
 import ProductCard from "./ProductCard";
+import SearchProduct from './SearchProduct'
+
 
 const FruitsContainer = () => {
 
   const [products, setProducts] = useState([])
+  const [searchProduct, setSearchProduct] = useState("")
+
 
   useEffect(() => {
     const fetchFruits = async () => {
@@ -20,13 +24,18 @@ const FruitsContainer = () => {
     fetchFruits()
   }, []);
 
-  const mappedFruits = products.map(product => (
+  const filteredProducts = products.filter(product => (product.name.toLowerCase().includes(searchProduct.toLowerCase())))
+
+  const mappedFruits = filteredProducts.map(product => (
     <ProductCard {...product} key={product.id} />
   ))
 
   return (
     <Container style={{ marginTop: '10em' }}>
+      <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
       <h1>Fruits</h1>
+      <SearchProduct searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
+      <br />
       <Card.Group itemsPerRow={2}>{mappedFruits}</Card.Group>
     </Container>
   )

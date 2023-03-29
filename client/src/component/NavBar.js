@@ -23,7 +23,7 @@ const NavBar = () => {
 
   if (!currentUser) {
     return (
-      <Menu fluid inverted size='huge'>
+      <Menu fluid inverted size='huge' fixed='top'>
         
         <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
@@ -47,7 +47,7 @@ const NavBar = () => {
 
   if (currentUser.admin === true) {
     return (
-      <Menu fluid inverted size='huge'>
+      <Menu fluid inverted size='huge' fixed='top'>
         <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
         <Dropdown item text='Products'>
@@ -75,7 +75,7 @@ const NavBar = () => {
   }
 
   return (
-    <Menu fluid inverted size='huge'>
+    <Menu fluid inverted size='huge' fixed='top'>
       <Menu.Item as={NavLink} to='/farms'>Farms</Menu.Item>
 
       <Dropdown item text='Products'>
