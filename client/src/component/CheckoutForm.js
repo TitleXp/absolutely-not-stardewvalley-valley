@@ -1,4 +1,5 @@
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
+import { Form, Button } from 'semantic-ui-react';
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -34,10 +35,12 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <PaymentElement />
-      <button disabled={!stripe}>Submit</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Field>
+        <PaymentElement />
+      </Form.Field>
+      <Button type="submit" disabled={!stripe}>Submit</Button>
+    </Form>
   )
 };
 

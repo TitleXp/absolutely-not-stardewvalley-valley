@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :purchases, dependent: :destroy
+    has_many :carts, through: :purchases
 
     validates :username, :email, :age, presence: true
     validates :username, uniqueness: true

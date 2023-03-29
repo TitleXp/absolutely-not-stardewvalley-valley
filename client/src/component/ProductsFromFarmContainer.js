@@ -54,10 +54,11 @@ const ProductsFromFarmContainer = () => {
         <Image src={farmer.sprite_link} style={{ width: '100px', height: '100px' }} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{farmer.name}</Card.Header>
+          <Card.Content>Age: {farmer.age}</Card.Content>
           <Card.Description>{farmer.bio}</Card.Description>
         </Card.Content>
       </Card>
-      <Header as='h2'>Products from Farm</Header>
+      <Header as='h2'>Products from {farmer.name}'s Farm</Header>
       <Card.Group>
         {mappedProductsFromFarm}
       </Card.Group>

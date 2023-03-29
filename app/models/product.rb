@@ -9,10 +9,16 @@ class Product < ApplicationRecord
   validates :category, inclusion: {in: %w(vegetable fruit ore tool), message: "%{value} is not within the accepted category."}
   validate :out_of_stock
 
+  after_save :decrease_stock, if: :saved_change_to_stock?
+
   def out_of_stock
     if stock === 0
       destroy
     end
+  end
+
+  def decrease_stock
+    self.stock -= carts.sum(:quantity)
   end
 
 end

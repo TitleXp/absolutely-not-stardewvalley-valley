@@ -16,7 +16,7 @@ const Notification = () => {
 
   return (
     <div>
-      {error.text}
+      {error & error.text}
     </div>
   )
 }

@@ -20,10 +20,14 @@ const FarmsContainer = () => {
 
   const mappedFarms = farms.map(farm => <FarmCard {...farm} key={farm.id} />);
 
+  // console.log('these are farms', farms)
+  
   return (
-    <Container style={{ marginTop: '10em' }}>
+    <Container style={{ marginTop: '10em' }} textAlign='center'>
+      {/* logo */}
+      <img src="https://i.imgur.com/rHEZqK5.png" width={700}  />
       <h2>Farms</h2>
-      <Card.Group>{mappedFarms}</Card.Group>
+      <Card.Group  itemsPerRow={3} >{mappedFarms}</Card.Group>
     </Container>
   );
 };

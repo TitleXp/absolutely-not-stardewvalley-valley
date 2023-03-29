@@ -2,14 +2,17 @@ import { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { UserContext } from "../context/userContext"
 import { ErrorContext } from "../context/errorContext"
-import { Form, Button, Message } from 'semantic-ui-react'
+import { Form, Button, Message, Container } from 'semantic-ui-react'
 
-const SignUp = ({ handleLogInSignUp }) => {
+const SignUp = ({ handleLogInSignUp, userId, setPurchaseId, setUserId }) => {
 
   const history = useHistory()
 
-  const {setCurrentUser} = useContext(UserContext)
+  const {currentUser, setCurrentUser} = useContext(UserContext)
   const {error, setError} = useContext(ErrorContext)
+
+  // console.log('signup level userId', userId )
+
 
   const [newUser, setNewUser] = useState({
     username: "",
@@ -20,12 +23,42 @@ const SignUp = ({ handleLogInSignUp }) => {
     profile_pic_link: ""
   })
 
+
   const handleSignUpChange = (e) => {
     setNewUser({...newUser, [e.target.name]: e.target.value})
   }
 
-  const handleSubmit = (e) => {
+  const createPurchaseId = (userId) => {
+    // create new purchase for that user (empty cart)
+    fetch('/purchases', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id: userId
+      }),
+    })
+    .then((res) => {
+      if(res.ok) {
+        res.json().then(purchaseObj => {
+          setPurchaseId(purchaseObj.id)
+        })
+      } else {
+        console.log("could not create purchaseID")
+      }
+      // res.json().then(
+      //   // some error message here
+      // )
+    })
+    .catch((error) => alert(error))
+    
+  }
+
+  const handleSubmit = (e) => { // create new user
     e.preventDefault()
+
+    // create new user
     fetch('/signup', {
       method: "POST",
       headers: {
@@ -37,30 +70,45 @@ const SignUp = ({ handleLogInSignUp }) => {
       if(res.ok) {
         res.json().then(newUserObj => {
           setCurrentUser(newUserObj)
+          // setUserId(newUserObj)
+          createPurchaseId(newUserObj.id)
+          console.log('new user id', newUserObj.id)
           history.push('/farms')
           // history.push here
         })
+
       } else {
-        // res.json().then((error) => {
-        //   alert(error)
-        // })
-        res.json().then(errorObj => {
-          if (typeof(errorObj.error) === 'string') {
-            setError({text: errorObj.error, type: ""})
-          } else {
-            setError(errorObj.error)
-          }
+
+        res.json().then((errorArr) => {
+          // alert(errorArr.errors) // this works
+          // console.log('error', errorArr.errors[0])
+          setError({text: errorArr.errors.join('. '), type: ""})
         })
+
+        // .then(productObj => setCart(currentVal => [productObj, ...currentVal]))
+
+
+        // res.json().then(errorObj => {
+        //   if (typeof(errorObj.error) === 'string') {
+        //     setError({text: errorObj.error, type: ""})
+        //   } else {
+        //     setError(errorObj.error)
+        //   }
+        // })
       }
     })
     .catch((error) => alert(error))
   }
 
+  // console.log('new user', newUser)
+  // console.log('current User', currentUser)
+
   return (
-    <div>
-      <h2>Sign up</h2>
-      <Form onSubmit={handleSubmit}>
+    <Container style={{ marginTop: '10em' }}  textAlign='center'>
+      <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
         <Button onClick={handleLogInSignUp}>Already have an account? Log in!</Button>
+      <Form onSubmit={handleSubmit} style={{ marginTop: '10em' }}>
+      <h2>Sign up</h2>
         <Form.Field>
           <label>Username</label>
           <input type="text" name="username" placeholder="Username" onChange={handleSignUpChange} value={newUser.username} required />
@@ -89,7 +137,7 @@ const SignUp = ({ handleLogInSignUp }) => {
       </Form>
       {error && <Message negative>{error.text}</Message>}
 
-    </div>
+    </Container>
   )
 }
 

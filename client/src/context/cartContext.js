@@ -5,7 +5,7 @@ const CartContext = createContext()
 const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { // async version
         const fetchCart = async () => {
           try {
             const resp = await fetch("/carts")
@@ -17,6 +17,16 @@ const CartProvider = ({children}) => {
         } 
         fetchCart()
       }, []);
+
+    // useEffect(() => {
+    //   const fetchCart = () => {
+    //     fetch("/carts")
+    //       .then((resp) => resp.json())
+    //       .then((data) => setCart(data))
+    //       .catch((error) => alert(error));
+    //   };
+    //   fetchCart();
+    // }, []);
     
 
     return(
