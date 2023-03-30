@@ -52,6 +52,10 @@ This app has not been deployed yet.
 
 <br>
 
+## App Demo
+
+<img src="https://imgur.com/HR9Y21h"/>
+
 ## How to install locally on your machine
 1. Fork the repository to your own Github account and clone it down to your local system
 2. Once the repository has been opened in your text editor of choice (VS Code for eaxample), and ensure you have a node package manager installed globablly run the following:
