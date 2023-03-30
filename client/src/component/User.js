@@ -100,7 +100,7 @@ const User = () => {
       method: "DELETE"
     })
     setCurrentUser(null)
-    history.push('/loginsignup')
+    history.push('/home')
   }
 
   return (

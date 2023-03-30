@@ -4,9 +4,14 @@ import { Card, Container, Button } from 'semantic-ui-react';
 import ProductCard from "./ProductCard";
 import SearchProduct from './SearchProduct'
 import { Link } from "react-router-dom";
+import { UserContext } from '../context/userContext'
+import { useContext } from 'react'
+
 
 
 const VegetablesContainer = () => {
+
+  const {currentUser} = useContext(UserContext)
 
   const [products, setProducts] = useState([])
   const [searchProduct, setSearchProduct] = useState("")
@@ -35,7 +40,8 @@ const VegetablesContainer = () => {
     <Container style={{ marginTop: '10em' }} textAlign='center'>
       <img src="https://i.imgur.com/rHEZqK5.png" width={700} />
       <br />
-      <Button as={Link} to='/cart' color='yellow'>Go to Cart</Button>
+      {currentUser ? <Button as={Link} to='/cart' color='yellow'>Go to Cart</Button> : null}
+
       <h1>Vegetables</h1>
       <SearchProduct searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
       <br />

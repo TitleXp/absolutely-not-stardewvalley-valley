@@ -5,8 +5,14 @@ import { Container, Card, Image, Header, Button } from 'semantic-ui-react'
 import ProductCard from './ProductCard'
 import FarmerCard from './FarmerCard'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../context/userContext'
+import { useContext } from 'react'
+
 
 const ProductsFromFarmContainer = () => {
+
+  const {currentUser} = useContext(UserContext)
+
 
   const [farm, setFarm] = useState({
     products: []
@@ -60,7 +66,8 @@ const ProductsFromFarmContainer = () => {
         </Card.Content>
       </Card>
       <br />
-      <Button as={Link} to='/cart' color='yellow'>Go to Cart</Button>
+      {currentUser ? <Button as={Link} to='/cart' color='yellow'>Go to Cart</Button> : null}
+      <Button as={Link} to='/farms' color='green'>Back to Farm</Button>
 
       <Header as='h2'>Products from {farmer.name}'s Farm</Header>
       <Card.Group itemsPerRow={3} className="product-card-group">
