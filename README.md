@@ -54,7 +54,25 @@ This app has not been deployed yet.
 
 ## App Demo
 
-<img src="https://i.imgur.com/HR9Y21h.png"/>
+# Home Page
+<img 
+src="https://i.imgur.com/HR9Y21h.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# Sign Up
+<img 
+src="https://i.imgur.com/VcFOBH9.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# Log In
+<img 
+src="https://i.imgur.com/YcOLdrH.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+
 
 ## How to install locally on your machine
 1. Fork the repository to your own Github account and clone it down to your local system
