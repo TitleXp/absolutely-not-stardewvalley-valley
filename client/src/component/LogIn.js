@@ -3,11 +3,13 @@ import { useHistory } from "react-router-dom"
 import { UserContext } from "../context/userContext"
 import { ErrorContext } from "../context/errorContext"
 import { Form, Button, Message, Container } from 'semantic-ui-react'
+import { CartContext } from "../context/cartContext"
 
 const LogIn = ({ handleLogInSignUp }) => {
 
   const history = useHistory()
 
+  const {setCart} = useContext(CartContext)
   const {setCurrentUser} = useContext(UserContext)
   const {error, setError} = useContext(ErrorContext)
 
@@ -33,6 +35,11 @@ const LogIn = ({ handleLogInSignUp }) => {
       if(res.ok) {
         res.json().then(userObj => {
           setCurrentUser(userObj)
+
+          // testing this line
+          setCart([])
+          // testing the line above
+          
           history.push('/farms')
           // do something else too? think about history.push here
         })
