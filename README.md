@@ -72,6 +72,47 @@ src="https://i.imgur.com/YcOLdrH.png"
 style="display: inline-block; margin: 0 auto; max-width: 300px"
 />
 
+# Farms
+<img 
+src="https://i.imgur.com/oZu7C1H.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# Farm's Product
+<img 
+src="https://i.imgur.com/sg59IdB.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# All Products
+<img 
+src="https://i.imgur.com/bW81v8i.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# Cart
+<img 
+src="https://i.imgur.com/EcuZ4bR.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# Checkout
+<img 
+src="https://i.imgur.com/xR96eeH.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# User Profile
+<img 
+src="https://i.imgur.com/O2TowXq.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
+
+# Logout
+<img 
+src="https://i.imgur.com/5ilouTK.png"
+style="display: inline-block; margin: 0 auto; max-width: 300px"
+/>
 
 
 ## How to install locally on your machine
